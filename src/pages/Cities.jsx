@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { fetchAllCities, updateCity } from "../api/cities-api";
-import CityList from "../components/CityList";
+import CityList from "../components/City/CityList";
 import NavBar from "../components/NavBar";
-import CityModal from "./CityModal";
+import CityModal from "../components/City/CityModal";
 import { FaPlusCircle } from "react-icons/fa";
 
 function Cities() {

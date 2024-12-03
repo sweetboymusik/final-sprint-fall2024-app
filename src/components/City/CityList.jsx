@@ -10,7 +10,7 @@ const headings = {
 
 function CityList({ cities, onEditCity }) {
   return (
-    <div className="flex flex-col my-2 rounded overflow-clip">
+    <div className="flex flex-col  rounded overflow-clip">
       <CityListItem key={"header"} city={headings} heading={true} />
 
       {cities.map((city) => (

@@ -1,5 +1,5 @@
 import React from "react";
-import CityDetails from "../components/CityDetails";
+import CityDetails from "../components/City/CityDetails";
 import NavBar from "../components/NavBar";
 
 function City() {
