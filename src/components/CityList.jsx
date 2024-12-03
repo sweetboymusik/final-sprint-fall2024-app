@@ -1,4 +1,3 @@
-import React from "react";
 import CityListItem from "./CityListItem";
 
 const headings = {
@@ -9,13 +8,17 @@ const headings = {
   airports: "Airports",
 };
 
-function CityList({ cities }) {
+function CityList({ cities, onEditCity }) {
   return (
-    <div className="flex flex-col my-2">
+    <div className="flex flex-col my-2 rounded overflow-clip">
       <CityListItem key={"header"} city={headings} heading={true} />
 
       {cities.map((city) => (
-        <CityListItem key={city.id} city={city} />
+        <CityListItem
+          key={city.id}
+          city={city}
+          onEditCity={() => onEditCity(city)}
+        />
       ))}
     </div>
   );
