@@ -1,11 +1,16 @@
-import './App.css';
-import NavBar from './components/NavBar';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
+import Cities from "./pages/Cities";
+import Users from "./pages/Users";
 
 function App() {
   return (
-    <div>
-      <NavBar/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/cities" element={<Cities />} />
+        <Route path="/users" element={<Users />} />
+      </Routes>
+    </Router>
   );
 }
 
