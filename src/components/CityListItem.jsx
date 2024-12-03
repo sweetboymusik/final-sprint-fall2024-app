@@ -4,23 +4,31 @@ import { FaEye } from "react-icons/fa6";
 
 function CityListItem({ city, heading }) {
   return (
-    <div className="grid grid-cols-6 px-4 py-2 text-sm gap-6 bg-slate-100 justify-evenly items-center  border-t border-slate-200">
-      <span>{city.id}</span>
-      <span>{city.name}</span>
-      <span>{city.state}</span>
-      <span>{city.population}</span>
-      <span>
-        {city.airports.length > 0 ? (
-          <span>{city.airports}</span>
+    <div className="flex px-4 py-2 text-sm gap-6 bg-slate-100 items-center  border-t border-slate-200">
+      <span className="w-20">{city.id}</span>
+      <span className="flex-1">{city.name}</span>
+      <span className="w-20">{city.state}</span>
+      <span className="flex-1">{city.population}</span>
+      <span className="flex-1">
+        {city.airports.length > 0 && !heading ? (
+          <div className="flex flex-col">
+            {city.airports.map((airport, idx) => (
+              <span key={idx}>
+                {airport.name} ({airport.code})
+              </span>
+            ))}
+          </div>
+        ) : heading ? (
+          <span>Airports</span>
         ) : (
           <span>n/a</span>
         )}
       </span>
 
       {heading ? (
-        <span>Actions</span>
+        <span className="w-18">Actions</span>
       ) : (
-        <span className="flex gap-4">
+        <span className="flex gap-4 w-18">
           <button>
             <FaPenToSquare />
           </button>
