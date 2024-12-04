@@ -1,5 +1,11 @@
+import CenteredLayout from "../layouts/CenteredLayout";
+
 function Users() {
-  return <h1>Welcome to the Home Page</h1>;
+  return (
+    <CenteredLayout>
+      <div></div>
+    </CenteredLayout>
+  );
 }
 
 export default Users;
