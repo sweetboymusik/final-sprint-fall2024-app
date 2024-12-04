@@ -1,23 +1,22 @@
-import CityListItem from "./CityListItem";
+import AirportListItem from "./AirportListItem";
 
 const headings = {
   id: "ID",
   name: "Name",
-  state: "State",
-  population: "Population",
-  airports: "Airports",
+  code: "Code",
+  city: "City",
 };
 
-function AirportList({ cities, onEditCity }) {
+function AirportList({ airports, onEditAirport }) {
   return (
     <div className="flex flex-col  rounded overflow-clip">
-      <CityListItem key={"header"} city={headings} heading={true} />
+      <AirportListItem key={"header"} airport={headings} heading={true} />
 
-      {cities.map((city) => (
-        <CityListItem
-          key={city.id}
-          city={city}
-          onEditCity={() => onEditCity(city)}
+      {airports.map((airport) => (
+        <AirportListItem
+          key={airport.id}
+          airport={airport}
+          onEditCity={onEditAirport}
         />
       ))}
     </div>
