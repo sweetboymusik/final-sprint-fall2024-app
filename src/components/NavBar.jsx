@@ -8,6 +8,7 @@ function NavBar() {
       <div className="flex gap-6">
         <Link to={"/"}>Home</Link>
         <Link to={"/cities"}>Cities</Link>
+        <Link to={"/airports"}>Airports</Link>
       </div>
 
       <div className="flex border-2 border-slate-300 rounded relative items-center">

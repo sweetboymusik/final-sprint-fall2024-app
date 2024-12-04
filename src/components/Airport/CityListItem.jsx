@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPenToSquare } from "react-icons/fa6";
 
-function CityListItem({ city, heading, onEditCity }) {
+function AirportListItem({ city, heading, onEditCity }) {
   return (
     <div
       className={`flex px-4 py-2 text-sm gap-6 bg-slate-100 items-center  border-t border-slate-200 max-w-screen-xl ${
@@ -43,4 +43,4 @@ function CityListItem({ city, heading, onEditCity }) {
   );
 }
 
-export default CityListItem;
+export default AirportListItem;

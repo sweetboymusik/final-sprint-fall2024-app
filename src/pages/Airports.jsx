@@ -1,8 +1,8 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 import CenteredLayout from "../layouts/CenteredLayout";
+import NavBar from "../components/NavBar";
 
-function Home() {
+function Airports() {
   return (
     <CenteredLayout>
       <NavBar />
@@ -10,4 +10,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Airports;
