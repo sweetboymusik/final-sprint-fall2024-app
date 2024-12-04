@@ -12,12 +12,12 @@ function CityModal({
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       {selectedCity && (
-        <div>
+        <div className="flex flex-col gap-2">
           <h2 className="text-xl font-semibold mb-4">
             {isNewCity ? "Add New City" : "Edit City Details"}
           </h2>
           <label className="block mb-2">
-            Name:
+            Name
             <input
               type="text"
               name="name"
@@ -27,7 +27,7 @@ function CityModal({
             />
           </label>
           <label className="block mb-2">
-            State:
+            State
             <input
               type="text"
               name="state"
@@ -37,7 +37,7 @@ function CityModal({
             />
           </label>
           <label className="block mb-2">
-            Population:
+            Population
             <input
               type="number"
               name="population"
@@ -48,7 +48,7 @@ function CityModal({
           </label>
           <button
             onClick={onSave}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
             {isNewCity ? "Add City" : "Save Changes"}
           </button>

@@ -1,53 +1,27 @@
-import { useCallback, useEffect, useState } from "react";
-import { fetchAllCities, updateCity } from "../api/cities-api";
+import { useEffect } from "react";
 import CityList from "../components/City/CityList";
 import NavBar from "../components/NavBar";
 import CityModal from "../components/City/CityModal";
 import { FaPlusCircle } from "react-icons/fa";
+import { useCity } from "../hooks/useCity";
 
 function Cities() {
-  const [cities, setCities] = useState([]);
-
-  const loadCitites = useCallback(async () => {
-    const response = await fetchAllCities();
-    setCities(response);
-  }, []);
+  const {
+    cities,
+    selectedCity,
+    isModalOpen,
+    isNewCity,
+    loadCities,
+    handleEditCity,
+    handleAddCity,
+    handleSaveCities,
+    handleChange,
+    setIsModalOpen,
+  } = useCity();
 
   useEffect(() => {
-    loadCitites().then((r) => console.log("Cities loaded"));
-  }, [loadCitites]);
-
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isNewCity, setIsNewCity] = useState(false);
-
-  const handleEditCity = (city) => {
-    setSelectedCity(city);
-    setIsNewCity(false);
-    setIsModalOpen(true);
-  };
-
-  const handleAddCity = () => {
-    setSelectedCity({
-      id: "",
-      name: "",
-      state: "",
-      population: "",
-      airports: [],
-    });
-    setIsNewCity(true);
-    setIsModalOpen(true);
-  };
-
-  const handleSave = () => {
-    updateCity(selectedCity, isNewCity);
-    setIsModalOpen(false);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSelectedCity((prev) => ({ ...prev, [name]: value }));
-  };
+    loadCities();
+  }, [loadCities]);
 
   return (
     <div className="flex flex-col gap-6 m-10">
@@ -71,7 +45,7 @@ function Cities() {
         selectedCity={selectedCity}
         isNewCity={isNewCity}
         onChange={handleChange}
-        onSave={handleSave}
+        onSave={handleSaveCities}
       />
     </div>
   );
