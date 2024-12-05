@@ -9,6 +9,10 @@ function NavBar() {
         <Link to={"/"}>Home</Link>
         <Link to={"/cities"}>Cities</Link>
         <Link to={"/airports"}>Airports</Link>
+        <Link to={"/airlines"}>Airlines</Link>
+        <Link to={"/aircraft"}>Aircraft</Link>
+        <Link to={"/flights"}>Flights</Link>
+        <Link to={"/passengers"}>Passengers</Link>
       </div>
 
       <div className="flex border-2 border-slate-300 rounded relative items-center">
