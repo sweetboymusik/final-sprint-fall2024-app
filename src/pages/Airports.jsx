@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import CenteredLayout from "../layouts/CenteredLayout";
-import NavBar from "../components/NavBar";
 import { fetchAllAirports } from "../api/airports-api";
 import List from "../components/List";
 
@@ -17,7 +16,6 @@ function Airports() {
   }, [loadAirports]);
   return (
     <CenteredLayout>
-      <NavBar />
       <List list={airports} />
     </CenteredLayout>
   );

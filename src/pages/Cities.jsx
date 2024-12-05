@@ -1,4 +1,3 @@
-import NavBar from "../components/NavBar";
 import CenteredLayout from "../layouts/CenteredLayout";
 import List from "../components/List";
 import { useCallback, useEffect, useState } from "react";
@@ -18,7 +17,6 @@ function Cities() {
 
   return (
     <CenteredLayout>
-      <NavBar />
       <List list={cities} />
     </CenteredLayout>
   );

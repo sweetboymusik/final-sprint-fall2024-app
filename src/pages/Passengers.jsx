@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import CenteredLayout from "../layouts/CenteredLayout";
-import NavBar from "../components/NavBar";
 import List from "../components/List";
 import { fetchAllPassengers } from "../api/passengers-api";
 
@@ -17,7 +16,6 @@ function Passengers() {
   }, [loadPassengers]);
   return (
     <CenteredLayout>
-      <NavBar />
       <List list={passengers} />
     </CenteredLayout>
   );
