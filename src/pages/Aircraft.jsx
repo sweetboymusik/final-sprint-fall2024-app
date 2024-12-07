@@ -15,7 +15,7 @@ function Aircraft() {
     loadAircraft();
   }, [loadAircraft]);
   return (
-    <Page>
+    <Page label={"Aircraft"}>
       <List list={aircraft} />
     </Page>
   );

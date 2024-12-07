@@ -1,26 +1,48 @@
 import React from "react";
-import { FaMagnifyingGlass } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import SideBarItem from "./SideBarItem";
+import {
+  FaHouse,
+  FaCartFlatbedSuitcase,
+  FaPlane,
+  FaPlaneDeparture,
+  FaBuilding,
+  FaLocationDot,
+  FaUser,
+} from "react-icons/fa6";
+import Logo from "./Logo";
 
 function SideBar() {
   return (
-    <div className="flex justify-between">
-      <div className="flex gap-6">
-        <Link to={"/"}>Home</Link>
-        <Link to={"/cities"}>Cities</Link>
-        <Link to={"/airports"}>Airports</Link>
-        <Link to={"/airlines"}>Airlines</Link>
-        <Link to={"/aircraft"}>Aircraft</Link>
-        <Link to={"/flights"}>Flights</Link>
-        <Link to={"/passengers"}>Passengers</Link>
-      </div>
+    <div className="flex flex-col gap-4 w-32 border-r">
+      <Logo />
 
-      <div className="flex border-2 border-slate-300 rounded relative items-center">
-        <div className="absolute p-2">
-          <FaMagnifyingGlass />
-        </div>
-        <input type="text" className="pl-8" />
-      </div>
+      <SideBarItem icon={<FaHouse />} label={"Home"} to={"/"} />
+      <hr className="w-2/3 self-center" />
+
+      <SideBarItem icon={<FaLocationDot />} label={"Cities"} to={"/cities"} />
+      <hr className="w-2/3 self-center" />
+
+      <SideBarItem
+        icon={<FaCartFlatbedSuitcase />}
+        label={"Airports"}
+        to={"/airports"}
+      />
+      <hr className="w-2/3 self-center" />
+
+      <SideBarItem icon={<FaBuilding />} label={"Airlines"} to={"/airlines"} />
+      <hr className="w-2/3 self-center" />
+
+      <SideBarItem icon={<FaPlane />} label={"Aircraft"} to={"/aircraft"} />
+      <hr className="w-2/3 self-center" />
+
+      <SideBarItem
+        icon={<FaPlaneDeparture />}
+        label={"Flights"}
+        to={"/flights"}
+      />
+      <hr className="w-2/3 self-center" />
+
+      <SideBarItem icon={<FaUser />} label={"Passengers"} to={"/passengers"} />
     </div>
   );
 }
