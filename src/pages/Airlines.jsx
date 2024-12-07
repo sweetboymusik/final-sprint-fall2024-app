@@ -15,7 +15,7 @@ function Airlines() {
     loadAirlines();
   }, [loadAirlines]);
   return (
-    <Page>
+    <Page label={"Airlines"}>
       <List list={airlines} />
     </Page>
   );

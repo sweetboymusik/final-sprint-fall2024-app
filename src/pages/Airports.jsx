@@ -15,7 +15,7 @@ function Airports() {
     loadAirports();
   }, [loadAirports]);
   return (
-    <Page>
+    <Page label={"Airports"}>
       <List list={airports} />
     </Page>
   );

@@ -21,8 +21,6 @@ const Breadcrumb = () => {
         {pathSegments.map((segment, index) => {
           const path = "/" + pathSegments.slice(0, index + 1).join("/");
           const isLast = index === pathSegments.length - 1;
-          console.log(path);
-          console.log(isLast);
 
           return (
             <li
