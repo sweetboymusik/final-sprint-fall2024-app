@@ -17,30 +17,30 @@ function SideBar() {
       <Logo />
 
       <SideBarItem icon={<FaHouse />} label={"Home"} to={"/"} />
-      <hr className="w-1/2 self-center" />
+      <hr className="w-2/3 self-center" />
 
       <SideBarItem icon={<FaLocationDot />} label={"Cities"} to={"/cities"} />
-      <hr className="w-1/2 self-center" />
+      <hr className="w-2/3 self-center" />
 
       <SideBarItem
         icon={<FaCartFlatbedSuitcase />}
         label={"Airports"}
         to={"/airports"}
       />
-      <hr className="w-1/2 self-center" />
+      <hr className="w-2/3 self-center" />
 
       <SideBarItem icon={<FaBuilding />} label={"Airlines"} to={"/airlines"} />
-      <hr className="w-1/2 self-center" />
+      <hr className="w-2/3 self-center" />
 
       <SideBarItem icon={<FaPlane />} label={"Aircraft"} to={"/aircraft"} />
-      <hr className="w-1/2 self-center" />
+      <hr className="w-2/3 self-center" />
 
       <SideBarItem
         icon={<FaPlaneDeparture />}
         label={"Flights"}
         to={"/flights"}
       />
-      <hr className="w-1/2 self-center" />
+      <hr className="w-2/3 self-center" />
 
       <SideBarItem icon={<FaUser />} label={"Passengers"} to={"/passengers"} />
     </div>

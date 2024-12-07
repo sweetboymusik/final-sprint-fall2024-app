@@ -16,7 +16,7 @@ function Cities() {
   }, [loadCities]);
 
   return (
-    <Page>
+    <Page label={"Cities"}>
       <List list={cities} />
     </Page>
   );
