@@ -56,7 +56,7 @@ const ListItem = ({ item, heading }) => {
   return (
     <div
       className={`flex gap-6 justify-evenly border-t p-2 items-center ${
-        heading ? "font-bold text-white text-lg bg-slate-500 border-none" : ""
+        heading ? "font-bold text-white text-lg bg-black border-none" : ""
       }`}
     >
       {Object.keys(item).map((key) => (
