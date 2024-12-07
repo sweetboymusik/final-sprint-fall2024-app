@@ -1,29 +1,23 @@
-import React, { useEffect } from "react";
-import CenteredLayout from "../layouts/CenteredLayout";
-import NavBar from "../components/NavBar";
-import { useAirport } from "../hooks/useAirport";
+import React, { useCallback, useEffect, useState } from "react";
+import { fetchAllAirports } from "../api/airports-api";
+import List from "../components/List";
+import Page from "../components/Page";
 
 function Airports() {
-  const {
-    airports,
-    selectedAirport,
-    isModalOpen,
-    isNewAirport,
-    loadAirports,
-    handleEditAirport,
-    handleAddAirport,
-    handleSaveAirport,
-    handleChange,
-    setIsModalOpen,
-  } = useAirport();
+  const [airports, setAirports] = useState([]);
+
+  const loadAirports = useCallback(async () => {
+    const response = await fetchAllAirports();
+    setAirports(response);
+  }, []);
 
   useEffect(() => {
     loadAirports();
   }, [loadAirports]);
   return (
-    <CenteredLayout>
-      <NavBar />
-    </CenteredLayout>
+    <Page>
+      <List list={airports} />
+    </Page>
   );
 }
 

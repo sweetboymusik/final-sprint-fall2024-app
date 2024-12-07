@@ -1,13 +1,8 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import CenteredLayout from "../layouts/CenteredLayout";
+import Page from "../components/Page";
 
 function Home() {
-  return (
-    <CenteredLayout>
-      <NavBar />
-    </CenteredLayout>
-  );
+  return <Page></Page>;
 }
 
 export default Home;

@@ -1,49 +1,24 @@
-import { useEffect } from "react";
-import CityList from "../components/City/CityList";
-import NavBar from "../components/NavBar";
-import CityModal from "../components/City/CityModal";
-import { useCity } from "../hooks/useCity";
-import CenteredLayout from "../layouts/CenteredLayout";
-import Button from "../components/Button";
+import List from "../components/List";
+import { useCallback, useEffect, useState } from "react";
+import { fetchAllCities } from "../api/cities-api";
+import Page from "../components/Page";
 
 function Cities() {
-  const {
-    cities,
-    selectedCity,
-    isModalOpen,
-    isNewCity,
-    loadCities,
-    handleEditCity,
-    handleAddCity,
-    handleSaveCities,
-    handleChange,
-    setIsModalOpen,
-  } = useCity();
+  const [cities, setCities] = useState([]);
+
+  const loadCities = useCallback(async () => {
+    const response = await fetchAllCities();
+    setCities(response);
+  }, []);
 
   useEffect(() => {
     loadCities();
   }, [loadCities]);
 
   return (
-    <CenteredLayout>
-      <NavBar />
-
-      <div className="flex gap-6">
-        <h1 className="text-3xl">All Cities</h1>
-        <Button onClick={handleAddCity} label="Add City" />
-      </div>
-
-      <CityList cities={cities} onEditCity={handleEditCity} />
-
-      <CityModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        selectedCity={selectedCity}
-        isNewCity={isNewCity}
-        onChange={handleChange}
-        onSave={handleSaveCities}
-      />
-    </CenteredLayout>
+    <Page>
+      <List list={cities} />
+    </Page>
   );
 }
 
