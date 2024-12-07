@@ -3,7 +3,7 @@ import List from "../components/List";
 import { fetchAllAircraft } from "../api/aircraft-api";
 import Page from "../components/Page";
 
-function Aircraft() {
+function Aircrafts() {
   const [aircraft, setAircraft] = useState([]);
 
   const loadAircraft = useCallback(async () => {
@@ -21,4 +21,4 @@ function Aircraft() {
   );
 }
 
-export default Aircraft;
+export default Aircrafts;
