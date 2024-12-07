@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import CenteredLayout from "../layouts/CenteredLayout";
 import List from "../components/List";
 import { fetchAllAircraft } from "../api/aircraft-api";
+import Page from "../components/Page";
 
 function Aircraft() {
   const [aircraft, setAircraft] = useState([]);
@@ -15,9 +15,9 @@ function Aircraft() {
     loadAircraft();
   }, [loadAircraft]);
   return (
-    <CenteredLayout>
+    <Page>
       <List list={aircraft} />
-    </CenteredLayout>
+    </Page>
   );
 }
 

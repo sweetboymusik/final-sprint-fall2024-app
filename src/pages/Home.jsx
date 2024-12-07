@@ -1,8 +1,8 @@
 import React from "react";
-import CenteredLayout from "../layouts/CenteredLayout";
+import Page from "../components/Page";
 
 function Home() {
-  return <CenteredLayout></CenteredLayout>;
+  return <Page></Page>;
 }
 
 export default Home;

@@ -1,6 +1,18 @@
 import { FaPenToSquare } from "react-icons/fa6";
 
 const renderValue = (value) => {
+  if (typeof value === "string" && value.includes("|")) {
+    // Handle delimiter-based multi-line formatting
+    const parts = value.split("|");
+    return (
+      <div className="flex flex-col">
+        {parts.map((part, index) => (
+          <span key={index}>{part}</span>
+        ))}
+      </div>
+    );
+  }
+
   if (Array.isArray(value)) {
     return (
       <div className="flex flex-col gap-2">
@@ -26,7 +38,7 @@ const renderValue = (value) => {
       <div className="flex flex-col gap-2">
         {keys.map((key) => (
           <div key={key} className="flex">
-            <span>{String(value[key])}</span>
+            <span>{renderValue(value[key])}</span>{" "}
           </div>
         ))}
       </div>

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import CenteredLayout from "../layouts/CenteredLayout";
 import { fetchAllAirports } from "../api/airports-api";
 import List from "../components/List";
+import Page from "../components/Page";
 
 function Airports() {
   const [airports, setAirports] = useState([]);
@@ -15,9 +15,9 @@ function Airports() {
     loadAirports();
   }, [loadAirports]);
   return (
-    <CenteredLayout>
+    <Page>
       <List list={airports} />
-    </CenteredLayout>
+    </Page>
   );
 }
 

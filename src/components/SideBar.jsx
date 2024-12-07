@@ -2,7 +2,7 @@ import React from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function SideBar() {
   return (
     <div className="flex justify-between">
       <div className="flex gap-6">
@@ -25,4 +25,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default SideBar;
