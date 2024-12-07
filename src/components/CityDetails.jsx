@@ -2,10 +2,9 @@ import React from "react";
 import PageDetailsItem from "./PageDetailsItem";
 
 function CityDetails({ city }) {
-  console.log(city.name);
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
+    <div className="details-outer">
+      <div className="details-inner">
         <h2>City Details</h2>
 
         <div>
@@ -20,10 +19,10 @@ function CityDetails({ city }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="details-inner">
         <h2>Airports</h2>
 
-        <div className="flex flex-col gap-4">
+        <div className="details-nested">
           {city?.airports?.map((airport) => {
             return (
               <div key={airport.id} className="flex flex-col">

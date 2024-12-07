@@ -8,8 +8,6 @@ const Breadcrumb = () => {
   const pathSegments = location.pathname.split("/").filter(Boolean);
   const [routeNames, setRouteNames] = useState({});
 
-  console.log(pathSegments);
-
   useEffect(() => {
     const fetchNames = async () => {
       const names = {};
@@ -18,13 +16,10 @@ const Breadcrumb = () => {
         const path = "/" + pathSegments.slice(0, index + 1).join("/");
         const routePrefix = `/${pathSegments[0]}/`;
 
-        // Fetch the name dynamically
         const name = await fetchDynamicName(segment, routePrefix);
-        console.log(name);
         names[path] = name;
       }
 
-      // Only update state if names have changed
       setRouteNames((prevNames) =>
         JSON.stringify(prevNames) === JSON.stringify(names) ? prevNames : names
       );
@@ -32,8 +27,6 @@ const Breadcrumb = () => {
 
     fetchNames();
   }, [pathSegments]);
-
-  console.log(routeNames);
 
   return (
     <nav>

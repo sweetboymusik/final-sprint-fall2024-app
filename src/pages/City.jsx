@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 function City() {
   const { id } = useParams();
   const [city, setCity] = useState({});
-  console.log(city);
 
   const loadCity = useCallback(async () => {
     const response = await fetchCityById(id);
