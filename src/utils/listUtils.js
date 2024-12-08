@@ -1,15 +1,15 @@
 import _ from "lodash";
 
 export const getHeaders = (list) => {
+  if (!list || list.length === 0) return {};
+
   const headers = list
     .flatMap((item) => Object.keys(item))
     .reduce((acc, key) => {
-      key === "id" ? (key = _.toUpper(key)) : (key = _.startCase(key));
-      acc[key] = key;
+      const transformedKey = key === "id" ? _.toUpper(key) : _.startCase(key);
+      acc[key] = transformedKey;
       return acc;
     }, {});
-
-  headers["Actions"] = "Actions";
 
   return headers;
 };

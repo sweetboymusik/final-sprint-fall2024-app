@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const renderValue = (value) => {
   if (typeof value === "string" && value.includes("|")) {
-    // Handle delimiter-based multi-line formatting
     const parts = value.split("|");
     return (
       <div className="flex flex-col">
@@ -56,30 +55,36 @@ const ListItem = ({ item, heading, url }) => {
 
   return (
     <div
-      className={`flex gap-6 justify-evenly border-t p-2 items-center  ${
+      className={`flex border-t p-2 items-center ${
         heading
           ? "font-bold text-white text-lg bg-black border-none hover:bg-none"
           : "hover:bg-gray-50"
       }`}
     >
-      {Object.keys(item).map((key) => (
-        <div key={key} className="flex-1 flex flex-col gap-10">
-          {renderValue(item[key])}
-        </div>
-      ))}
+      <div className="w-32 flex-shrink-0">{renderValue(item.id)}</div>
 
-      {!heading ? (
-        <div className="flex-1 flex gap-2">
-          <button>
-            <FaPenToSquare />
-          </button>
-          <Link to={url + "/" + item.id}>
-            <FaEye />
-          </Link>
-        </div>
-      ) : (
-        ""
-      )}
+      {Object.keys(item)
+        .filter((key) => key !== "id")
+        .map((key) => (
+          <div key={key} className="flex-1 flex flex-col gap-10">
+            {renderValue(item[key])}
+          </div>
+        ))}
+
+      <div className="w-32 flex-shrink-0 flex gap-2 justify-center">
+        {!heading ? (
+          <>
+            <button>
+              <FaPenToSquare />
+            </button>
+            <Link to={url + "/" + item.id}>
+              <FaEye />
+            </Link>
+          </>
+        ) : (
+          "Actions"
+        )}
+      </div>
     </div>
   );
 };
