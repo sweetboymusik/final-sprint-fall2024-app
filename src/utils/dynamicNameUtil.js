@@ -31,6 +31,10 @@ export const fetchDynamicName = async (segment, routePrefix) => {
       return (
         response.firstName + " " + response.lastName + " (" + response.id + ")"
       );
+    case "/flights/":
+      if (segment === "flights") return "Flights";
+      response = await fetchAircraftById(segment);
+      return "#" + response.id;
     default:
       break;
   }

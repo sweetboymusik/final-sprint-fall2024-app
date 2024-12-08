@@ -12,6 +12,7 @@ import Airport from "./pages/Airport";
 import Airline from "./pages/Airline";
 import Aircraft from "./pages/Aircraft";
 import Passenger from "./pages/Passenger";
+import Flight from "./pages/Flight";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
 
         {/* flight related routes */}
         <Route path="/flights" element={<Flights />} />
-        <Route path="/flights/:id" element={<Flights />} />
+        <Route path="/flights/:id" element={<Flight />} />
 
         {/* passenger related routes */}
         <Route path="/passengers" element={<Passengers />} />
