@@ -11,6 +11,8 @@ export const fetchDynamicName = async (segment, routePrefix) => {
   switch (routePrefix) {
     case "/cities/":
       if (segment === "cities") return "Cities";
+      if (segment === "edit") return "Edit";
+      if (segment === "add") return "Add";
       response = await fetchCityById(segment);
       return response.name;
     case "/airports/":

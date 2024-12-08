@@ -13,6 +13,8 @@ import Airline from "./pages/Airline";
 import Aircraft from "./pages/Aircraft";
 import Passenger from "./pages/Passenger";
 import Flight from "./pages/Flight";
+import Edit from "./pages/Edit";
+import Add from "./pages/Add";
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
 
         {/* city related routes */}
         <Route path="/cities" element={<Cities />} />
+        <Route path="/cities/add" element={<Add />} />
         <Route path="/cities/:id" element={<City />} />
+        <Route path="/cities/:id/edit" element={<Edit />} />
 
         {/* airport related routes */}
         <Route path="/airports" element={<Airports />} />

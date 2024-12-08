@@ -1,13 +1,24 @@
 import React from "react";
-import { FaPlusCircle } from "react-icons/fa";
+import { FaPlusSquare, FaSave } from "react-icons/fa";
+import { FaPencil } from "react-icons/fa6";
 
-function Button({ onClick, label }) {
+function Button({ icon = "", label, onClick }) {
+  const getIcon = function () {
+    switch (icon) {
+      case "edit":
+        return <FaPencil />;
+      case "submit":
+        return <FaSave />;
+      case "add":
+        return <FaPlusSquare />;
+      default:
+        break;
+    }
+  };
+
   return (
-    <button
-      onClick={onClick}
-      className="flex gap-4 justify-center items-center px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-    >
-      <FaPlusCircle />
+    <button onClick={onClick}>
+      {getIcon()}
       <span>{label}</span>
     </button>
   );
