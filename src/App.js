@@ -10,11 +10,13 @@ import Aircrafts from "./pages/Aircrafts";
 import City from "./pages/City";
 import Airport from "./pages/Airport";
 import Airline from "./pages/Airline";
+import Aircraft from "./pages/Aircraft";
 
 function App() {
   return (
     <Router>
       <Routes>
+        {/* home route */}
         <Route path="/" element={<Home />} />
 
         {/* city related routes */}
@@ -31,7 +33,7 @@ function App() {
 
         {/* aircraft related routes */}
         <Route path="/aircraft" element={<Aircrafts />} />
-        <Route path="/aircraft/:id" element={<Aircrafts />} />
+        <Route path="/aircraft/:id" element={<Aircraft />} />
 
         {/* flight related routes */}
         <Route path="/flights" element={<Flights />} />

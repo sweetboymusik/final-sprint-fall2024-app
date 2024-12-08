@@ -16,6 +16,7 @@ function Airline() {
   useEffect(() => {
     loadAirline();
   }, [loadAirline, id]);
+
   return (
     <Page label={"Airline"}>
       <AirlineDetails airline={airline} />
