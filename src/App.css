@@ -3,3 +3,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+  @apply text-3xl font-bold;
+}
+
+h2 {
+  @apply text-2xl font-bold;
+}
+
+h3 {
+  @apply text-xl font-bold;
+}
+
+.details-outer {
+  @apply flex flex-col gap-8;
+}
+
+.details-inner {
+  @apply flex flex-col gap-2;
+}
+
+.details-nested {
+  @apply flex flex-col gap-4;
+}

@@ -1,4 +1,5 @@
-import { FaPenToSquare } from "react-icons/fa6";
+import { FaEye, FaPenToSquare } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const renderValue = (value) => {
   if (typeof value === "string" && value.includes("|")) {
@@ -48,15 +49,17 @@ const renderValue = (value) => {
   return <span>{String(value)}</span>;
 };
 
-const ListItem = ({ item, heading }) => {
+const ListItem = ({ item, heading, url }) => {
   if (!item || typeof item !== "object") {
     return null;
   }
 
   return (
     <div
-      className={`flex gap-6 justify-evenly border-t p-2 items-center ${
-        heading ? "font-bold text-white text-lg bg-black border-none" : ""
+      className={`flex gap-6 justify-evenly border-t p-2 items-center  ${
+        heading
+          ? "font-bold text-white text-lg bg-black border-none hover:bg-none"
+          : "hover:bg-gray-50"
       }`}
     >
       {Object.keys(item).map((key) => (
@@ -66,10 +69,13 @@ const ListItem = ({ item, heading }) => {
       ))}
 
       {!heading ? (
-        <div className="flex-1">
+        <div className="flex-1 flex gap-2">
           <button>
             <FaPenToSquare />
           </button>
+          <Link to={url + "/" + item.id}>
+            <FaEye />
+          </Link>
         </div>
       ) : (
         ""

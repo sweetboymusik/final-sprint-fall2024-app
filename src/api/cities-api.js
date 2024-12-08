@@ -5,6 +5,7 @@ export const fetchAllCities = async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_API_URL}/city/all`
     );
+
     return response.data;
   } catch (error) {
     console.error("Error fetching cities:", error);
@@ -17,6 +18,7 @@ export const fetchCityById = async (id) => {
     const response = await axios.get(
       `${process.env.REACT_APP_API_URL}/city/id/${id}`
     );
+
     return response.data;
   } catch (error) {
     console.error("Error fetching city:", error);
