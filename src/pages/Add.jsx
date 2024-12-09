@@ -1,10 +1,9 @@
 import Page from "../components/Page";
-import CityForm from "../components/CityForm";
 
-function Add() {
+function Add({ label, FormComponent }) {
   return (
-    <Page label={"Add | "}>
-      <CityForm isNewCity={true} />
+    <Page label={label}>
+      <FormComponent isNew={true} />
     </Page>
   );
 }

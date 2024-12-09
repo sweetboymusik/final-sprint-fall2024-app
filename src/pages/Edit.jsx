@@ -1,25 +1,31 @@
 import { useParams } from "react-router-dom";
-import CityForm from "../components/CityForm";
 import Page from "../components/Page";
 import { useCallback, useEffect, useState } from "react";
-import { fetchCityById } from "../api/cities-api";
 
-function Edit() {
+function Edit({ FormComponent, fetchById, entityLabel }) {
   const { id } = useParams();
-  const [city, setCity] = useState({});
+  const [entity, setEntity] = useState(null);
 
-  const loadCity = useCallback(async () => {
-    const response = await fetchCityById(id);
-    setCity(response);
-  }, [id]);
+  const loadEntity = useCallback(async () => {
+    try {
+      const response = await fetchById(id);
+      setEntity(response);
+    } catch (error) {
+      console.error(`Error fetching ${entityLabel}:`, error);
+    }
+  }, [id, fetchById, entityLabel]);
 
   useEffect(() => {
-    loadCity();
-  }, [loadCity, id]);
+    loadEntity();
+  }, [loadEntity]);
+
+  if (!entity) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <Page label={"Edit | " + city.name}>
-      <CityForm city={city} />
+    <Page label={`Edit | ${entity.name || entityLabel}`}>
+      <FormComponent entity={entity} />
     </Page>
   );
 }

@@ -15,6 +15,10 @@ import Passenger from "./pages/Passenger";
 import Flight from "./pages/Flight";
 import Edit from "./pages/Edit";
 import Add from "./pages/Add";
+import CityForm from "./components/CityForm";
+import AirportForm from "./components/AirportForm";
+import { fetchCityById } from "./api/cities-api";
+import { fetchAirportById } from "./api/airports-api";
 
 function App() {
   return (
@@ -25,13 +29,39 @@ function App() {
 
         {/* city related routes */}
         <Route path="/cities" element={<Cities />} />
-        <Route path="/cities/add" element={<Add />} />
+        <Route
+          path="/cities/add"
+          element={<Add FormComponent={CityForm} label={"Add City"} />}
+        />
         <Route path="/cities/:id" element={<City />} />
-        <Route path="/cities/:id/edit" element={<Edit />} />
+        <Route
+          path="/cities/:id/edit"
+          element={
+            <Edit
+              FormComponent={CityForm}
+              fetchById={fetchCityById}
+              entityLabel={"City"}
+            />
+          }
+        />
 
         {/* airport related routes */}
         <Route path="/airports" element={<Airports />} />
+        <Route
+          path="/airports/add"
+          element={<Add FormComponent={AirportForm} label={"Add Airport"} />}
+        />
         <Route path="/airports/:id" element={<Airport />} />
+        <Route
+          path="/airports/:id/edit"
+          element={
+            <Edit
+              FormComponent={AirportForm}
+              fetchById={fetchAirportById}
+              entityLabel={"Airport"}
+            />
+          }
+        />
 
         {/* airline related routes */}
         <Route path="/airlines" element={<Airlines />} />

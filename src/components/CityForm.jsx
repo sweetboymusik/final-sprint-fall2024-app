@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { updateCity } from "../api/cities-api";
 import Button from "./Button";
 
-function CityForm({ city = {}, isNewCity = false }) {
+function CityForm({ entity: city = {}, isNew: isNewCity = false }) {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
