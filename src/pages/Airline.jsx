@@ -24,8 +24,12 @@ function Airline() {
   };
 
   return (
-    <Page label={"Airline | " + airline.name}>
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+    <Page
+      label={"Airline | " + airline.name}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+    >
       <AirlineDetails airline={airline} />
     </Page>
   );

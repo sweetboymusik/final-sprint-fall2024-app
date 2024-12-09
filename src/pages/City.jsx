@@ -24,8 +24,12 @@ function City() {
   };
 
   return (
-    <Page label={"City | " + city.name}>
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+    <Page
+      label={"City | " + city.name}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+    >
       <CityDetails city={city} />
     </Page>
   );

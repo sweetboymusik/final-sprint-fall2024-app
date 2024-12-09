@@ -24,8 +24,12 @@ function Airport() {
   };
 
   return (
-    <Page label={"Airport | " + airport.name}>
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+    <Page
+      label={"Airport | " + airport.name}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+    >
       <AirportDetails airport={airport} />
     </Page>
   );

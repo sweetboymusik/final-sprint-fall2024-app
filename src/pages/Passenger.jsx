@@ -26,8 +26,10 @@ function Passenger() {
   return (
     <Page
       label={"Passenger | " + passenger.firstName + " " + passenger.lastName}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
     >
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
       <PassengerDetails passenger={passenger} />
     </Page>
   );

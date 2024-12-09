@@ -25,8 +25,12 @@ function Aircraft() {
   };
 
   return (
-    <Page label={"Aircraft | " + aircraft.type}>
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+    <Page
+      label={"Aircraft | " + aircraft.type}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+    >
       <AircraftDetails aircraft={aircraft} />
     </Page>
   );
