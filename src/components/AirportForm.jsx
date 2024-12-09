@@ -56,7 +56,7 @@ function AirportForm({ entity: airport = {}, isNew: isNewAirport = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="entity-form">
       <FormItem
         type="text"
         label="Name"

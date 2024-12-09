@@ -36,7 +36,7 @@ function AirlineForm({ entity: airline = {}, isNew: isNewAirline = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="entity-form">
       <FormItem
         type={"text"}
         label={"Name"}

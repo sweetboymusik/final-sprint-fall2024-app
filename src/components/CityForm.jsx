@@ -39,7 +39,7 @@ function CityForm({ entity: city = {}, isNew: isNewCity = false }) {
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit} className="entity-form">
       <FormItem
         type={"text"}
         label={"Name"}
@@ -61,12 +61,7 @@ function CityForm({ entity: city = {}, isNew: isNewCity = false }) {
         onChange={(e) => setPopulation(e.target.value)}
       />
 
-      <Button
-        icon="submit"
-        type="submit"
-        onClick={handleSubmit}
-        label={"Submit"}
-      />
+      <Button icon="submit" type="submit" label={"Submit"} />
     </form>
   );
 }

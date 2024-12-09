@@ -104,7 +104,7 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="entity-form">
       <div>
         <label>Departure</label>
         <DatePicker
