@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchAircraftById } from "../api/aircraft-api";
 import Page from "../components/Page";
 import AircraftDetails from "../components/AircraftDetails";
+import Button from "../components/Button";
 
 function Aircraft() {
   const { id } = useParams();
-  console.log("ID:", id);
+  const navigate = useNavigate();
   const [aircraft, setAircraft] = useState({});
 
   const loadAircraft = useCallback(async () => {
@@ -19,8 +20,13 @@ function Aircraft() {
     loadAircraft();
   }, [loadAircraft, id]);
 
+  const handleButtonClick = function () {
+    navigate(`/aircraft/${id}/edit`);
+  };
+
   return (
     <Page label={"Aircraft | " + aircraft.type}>
+      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
       <AircraftDetails aircraft={aircraft} />
     </Page>
   );

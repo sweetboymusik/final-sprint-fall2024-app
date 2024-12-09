@@ -2,7 +2,6 @@ import React from "react";
 import PageDetailsItem from "./PageDetailsItem";
 
 function AirportDetails({ airport }) {
-  console.log(airport);
   return (
     <div className="details-outer">
       <div className="details-inner">

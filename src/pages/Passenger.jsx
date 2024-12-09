@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Page from "../components/Page";
 import { fetchPassengerById } from "../api/passengers-api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PassengerDetails from "../components/PassengerDetails";
+import Button from "../components/Button";
 
 function Passenger() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [passenger, setPassenger] = useState({});
 
   const loadPassenger = useCallback(async () => {
@@ -17,10 +19,15 @@ function Passenger() {
     loadPassenger();
   }, [loadPassenger, id]);
 
+  const handleButtonClick = function () {
+    navigate(`/passengers/${id}/edit`);
+  };
+
   return (
     <Page
       label={"Passenger | " + passenger.firstName + " " + passenger.lastName}
     >
+      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
       <PassengerDetails passenger={passenger} />
     </Page>
   );

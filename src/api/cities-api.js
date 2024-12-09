@@ -15,6 +15,7 @@ export const fetchAllCities = async () => {
 
 export const fetchCityById = async (id) => {
   try {
+    console.log(id);
     const response = await axios.get(
       `${process.env.REACT_APP_API_URL}/city/id/${id}`
     );
