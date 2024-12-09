@@ -7,7 +7,9 @@ function Page({ children, label, Button, SecondaryButton = "" }) {
   return (
     <div className="w-full">
       <div className="flex">
-        <SideBar />
+        <div className="sticky top-0 h-screen">
+          <SideBar />
+        </div>
 
         <div className="w-full">
           <PageHeader

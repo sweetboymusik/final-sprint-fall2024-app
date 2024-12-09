@@ -4,7 +4,7 @@ import { getHeaders } from "../utils/listUtils";
 function List({ list = [], url }) {
   const headers = getHeaders(list);
   return (
-    <div className="">
+    <div className="border border-primary-200 rounded overflow-clip">
       <ListItem item={headers} heading={true} />
 
       {list.map((item, idx) => (

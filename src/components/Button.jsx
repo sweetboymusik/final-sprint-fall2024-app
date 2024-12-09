@@ -17,7 +17,11 @@ function Button({ icon = "", label, onClick, type = "submit" }) {
   };
 
   return (
-    <button onClick={onClick} type={type}>
+    <button
+      onClick={onClick}
+      type={type}
+      className="flex gap-2 items-center text-white bg-primary-800 p-4 rounded h-10"
+    >
       {getIcon()}
       <span>{label}</span>
     </button>

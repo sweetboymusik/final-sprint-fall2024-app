@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply text-primary-950;
+}
+
 h1 {
   @apply text-3xl font-bold;
 }

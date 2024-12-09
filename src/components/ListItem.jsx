@@ -57,8 +57,8 @@ const ListItem = ({ item, heading, url }) => {
     <div
       className={`flex border-t p-2 items-center ${
         heading
-          ? "font-bold text-white text-lg bg-black border-none hover:bg-none"
-          : "hover:bg-gray-50"
+          ? "font-bold text-white text-lg bg-primary-800 border-none hover:bg-none"
+          : "hover:bg-primary-100"
       }`}
     >
       <div className="w-32 flex-shrink-0">{renderValue(item.id)}</div>
