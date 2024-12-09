@@ -25,3 +25,27 @@ export const fetchAirlineById = async (id) => {
     throw error;
   }
 };
+
+export const updateAirline = async (airline, isNewAirline) => {
+  try {
+    const url = isNewAirline
+      ? `${process.env.REACT_APP_API_URL}/airline`
+      : `${process.env.REACT_APP_API_URL}/airline/id/${airline.id}`;
+
+    const method = isNewAirline ? "post" : "patch";
+
+    const response = await axios({
+      method,
+      url,
+      data: airline,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(
+      isNewAirline ? "Error creating airline:" : "Error updating airline:",
+      error
+    );
+    throw error;
+  }
+};

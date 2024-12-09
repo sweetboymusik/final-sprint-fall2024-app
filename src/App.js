@@ -19,6 +19,7 @@ import CityForm from "./components/CityForm";
 import AirportForm from "./components/AirportForm";
 import { fetchCityById } from "./api/cities-api";
 import { fetchAirportById } from "./api/airports-api";
+import AirlineForm from "./components/AirlineForm";
 
 function App() {
   return (
@@ -65,7 +66,21 @@ function App() {
 
         {/* airline related routes */}
         <Route path="/airlines" element={<Airlines />} />
+        <Route
+          path="/airlines/add"
+          element={<Add FormComponent={AirlineForm} label={"Add Airline"} />}
+        />
         <Route path="/airlines/:id" element={<Airline />} />
+        <Route
+          path="/airlines/:id/edit"
+          element={
+            <Edit
+              FormComponent={AirlineForm}
+              fetchById={fetchAirportById}
+              entityLabel={"Airport"}
+            />
+          }
+        />
 
         {/* aircraft related routes */}
         <Route path="/aircraft" element={<Aircrafts />} />
