@@ -22,6 +22,8 @@ import { fetchAirportById } from "./api/airports-api";
 import AirlineForm from "./components/AirlineForm";
 import AircraftForm from "./components/AircraftForm";
 import { fetchAircraftById } from "./api/aircraft-api";
+import PassengerForm from "./components/PassengerForm";
+import { fetchPassengerById } from "./api/passengers-api";
 
 function App() {
   return (
@@ -108,7 +110,23 @@ function App() {
 
         {/* passenger related routes */}
         <Route path="/passengers" element={<Passengers />} />
+        <Route
+          path="/passengers/add"
+          element={
+            <Add FormComponent={PassengerForm} label={"Add Passenger"} />
+          }
+        />
         <Route path="/passengers/:id" element={<Passenger />} />
+        <Route
+          path="/passengers/:id/edit"
+          element={
+            <Edit
+              FormComponent={PassengerForm}
+              fetchById={fetchPassengerById}
+              entityLabel={"Passenger"}
+            />
+          }
+        />
       </Routes>
     </Router>
   );
