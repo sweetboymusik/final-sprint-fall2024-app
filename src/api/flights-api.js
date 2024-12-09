@@ -49,3 +49,22 @@ export const updateFlight = async (flight, isNewFlight) => {
     throw error;
   }
 };
+
+export const addPassengerToFlight = async (flightId, passengerId) => {
+  try {
+    const url = `${process.env.REACT_APP_API_URL}/flight/id/${flightId}/passengers/add/${passengerId}`;
+
+    const response = await axios({
+      method: "post",
+      url,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Error adding passenger with ID ${passengerId} to flight with ID ${flightId}:`,
+      error
+    );
+    throw error;
+  }
+};

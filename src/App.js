@@ -26,6 +26,7 @@ import PassengerForm from "./components/PassengerForm";
 import { fetchPassengerById } from "./api/passengers-api";
 import FlightForm from "./components/FlightForm";
 import { fetchFlightById } from "./api/flights-api";
+import FlightPassengers from "./pages/FlightPassengers";
 
 function App() {
   return (
@@ -113,6 +114,10 @@ function App() {
           element={<Add FormComponent={FlightForm} label={"Add Flight"} />}
         />
         <Route path="/flights/:id" element={<Flight />} />
+        <Route
+          path="/flights/:id/add_passengers"
+          element={<FlightPassengers />}
+        />
         <Route
           path="/flights/:id/edit"
           element={

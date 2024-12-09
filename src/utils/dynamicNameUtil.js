@@ -7,6 +7,7 @@ import { fetchPassengerById } from "../api/passengers-api";
 
 export const fetchDynamicName = async (segment, routePrefix) => {
   let response;
+  console.log(segment);
 
   switch (routePrefix) {
     case "/cities/":
@@ -45,6 +46,7 @@ export const fetchDynamicName = async (segment, routePrefix) => {
       if (segment === "flights") return "Flights";
       if (segment === "edit") return "Edit";
       if (segment === "add") return "Add";
+      if (segment === "add_passengers") return "Add Passengers";
       response = await fetchAircraftById(segment);
       return "#" + response.id;
     default:

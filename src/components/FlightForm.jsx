@@ -6,6 +6,7 @@ import { updateFlight } from "../api/flights-api";
 import FormDropdown from "./FormDropdown";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Button from "./Button";
 
 function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   const [airports, setAirports] = useState([]);
   const [aircrafts, setAircrafts] = useState([]);
 
-  // Convert UTC to local Date object for display
   const parseUTCToLocal = (utcString) => {
     const utcDate = new Date(utcString);
     return new Date(
@@ -32,7 +32,6 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
     );
   };
 
-  // Convert local Date object to UTC ISO string for submission
   const convertLocalToUTCISO = (localDate) => {
     return new Date(
       Date.UTC(
@@ -152,9 +151,7 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
         onChange={(e) => setAircraft(Number(e.target.value))}
       />
 
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
+      <Button icon="submit" type="submit" label={"Submit"} />
     </form>
   );
 }

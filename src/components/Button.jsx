@@ -2,7 +2,7 @@ import React from "react";
 import { FaPlusSquare, FaSave } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 
-function Button({ icon = "", label, onClick }) {
+function Button({ icon = "", label, onClick, type = "submit" }) {
   const getIcon = function () {
     switch (icon) {
       case "edit":
@@ -17,7 +17,7 @@ function Button({ icon = "", label, onClick }) {
   };
 
   return (
-    <button onClick={onClick}>
+    <button onClick={onClick} type={type}>
       {getIcon()}
       <span>{label}</span>
     </button>

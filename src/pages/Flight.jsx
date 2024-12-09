@@ -23,9 +23,18 @@ function Flight() {
     navigate(`/flights/${id}/edit`);
   };
 
+  const handleAddPassengersToFlight = function () {
+    navigate(`/flights/${id}/add_passengers`);
+  };
+
   return (
     <Page label={"Flight | #" + flight.id}>
       <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      <Button
+        icon={"add"}
+        label={"Add Passengers"}
+        onClick={handleAddPassengersToFlight}
+      />
       <FlightDetails flight={flight} />
     </Page>
   );

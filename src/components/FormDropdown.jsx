@@ -8,7 +8,9 @@ function FormDropdown({ label, list, value, onChange }) {
         <select value={value} onChange={onChange}>
           {list?.map((item) => (
             <option key={item?.id} value={item?.id}>
-              {item?.name || item?.type + " (" + item?.airline?.name + ")"}
+              {label === "Add Passenger"
+                ? `${item?.fullName}`
+                : `${item?.name || item?.type} (${item?.airline?.name})`}
             </option>
           ))}
         </select>
