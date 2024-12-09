@@ -13,7 +13,7 @@ import Logo from "./Logo";
 
 function SideBar() {
   return (
-    <div className="flex flex-col gap-4 w-32 border-r">
+    <div className="flex flex-col gap-4 w-36 border-r">
       <Logo />
 
       <SideBarItem icon={<FaHouse />} label={"Home"} to={"/"} />

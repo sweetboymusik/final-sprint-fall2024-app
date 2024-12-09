@@ -24,8 +24,10 @@ function Aircrafts() {
   };
 
   return (
-    <Page label={"Aircraft"}>
-      <Button icon="add" label={"Add"} onClick={handleAddAircraft} />
+    <Page
+      label={"Aircraft"}
+      Button={<Button icon="add" label={"Add"} onClick={handleAddAircraft} />}
+    >
       <List list={aircraft} url={url} />
     </Page>
   );

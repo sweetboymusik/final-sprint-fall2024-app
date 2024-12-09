@@ -23,8 +23,10 @@ function Airports() {
     navigate(`/airports/add`);
   };
   return (
-    <Page label={"Airports"}>
-      <Button icon="add" label={"Add"} onClick={handleAddAirport} />
+    <Page
+      label={"Airports"}
+      Button={<Button icon="add" label={"Add"} onClick={handleAddAirport} />}
+    >
       <List list={airports} url={url} />
     </Page>
   );

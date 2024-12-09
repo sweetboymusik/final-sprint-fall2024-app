@@ -24,8 +24,10 @@ function Airlines() {
   };
 
   return (
-    <Page label={"Airlines"}>
-      <Button icon="add" label={"Add"} onClick={handleAddAirline} />
+    <Page
+      label={"Airlines"}
+      Button={<Button icon="add" label={"Add"} onClick={handleAddAirline} />}
+    >
       <List list={airlines} url={url} />
     </Page>
   );

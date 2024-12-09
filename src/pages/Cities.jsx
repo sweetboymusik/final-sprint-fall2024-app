@@ -24,8 +24,10 @@ function Cities() {
   };
 
   return (
-    <Page label={"Cities"}>
-      <Button icon="add" label={"Add"} onClick={handleAddCity} />
+    <Page
+      label={"Cities"}
+      Button={<Button icon="add" label={"Add"} onClick={handleAddCity} />}
+    >
       <List list={cities} url={url} />
     </Page>
   );

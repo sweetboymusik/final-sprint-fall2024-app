@@ -24,8 +24,10 @@ function Passengers() {
   };
 
   return (
-    <Page label={"Passengers"}>
-      <Button icon="add" label={"Add"} onClick={handleAddPassenger} />
+    <Page
+      label={"Passengers"}
+      Button={<Button icon="add" label={"Add"} onClick={handleAddPassenger} />}
+    >
       <List list={passengers} url={url} />
     </Page>
   );

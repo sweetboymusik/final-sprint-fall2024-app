@@ -1,13 +1,18 @@
 import React from "react";
 import PageContent from "./PageContent";
 import SideBar from "./SideBar";
+import PageHeader from "./PageHeader";
 
-function Page({ children, label }) {
+function Page({ children, label, Button }) {
   return (
     <div className="w-full">
       <div className="flex">
         <SideBar />
-        <PageContent children={children} label={label} />
+
+        <div className="w-full">
+          <PageHeader label={label} Button={Button} />
+          <PageContent children={children} label={label} />
+        </div>
       </div>
     </div>
   );
