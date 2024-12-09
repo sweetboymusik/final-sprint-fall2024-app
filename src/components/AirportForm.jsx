@@ -12,6 +12,7 @@ function AirportForm({ entity: airport = {}, isNew: isNewAirport = false }) {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [city, setCity] = useState(1);
+
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
