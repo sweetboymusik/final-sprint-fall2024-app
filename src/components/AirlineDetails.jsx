@@ -18,7 +18,7 @@ function AirlineDetails({ airline }) {
       </div>
 
       <div className="details-table">
-        <h2>Aircraft</h2>
+        <h2>Aircraft ({airline?.aircraftList?.length})</h2>
         <List list={airline?.aircraftList} url={url} />
       </div>
     </div>

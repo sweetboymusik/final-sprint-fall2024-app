@@ -23,7 +23,7 @@ function CityDetails({ city }) {
       </div>
 
       <div className="details-table">
-        <h2>Airports</h2>
+        <h2>Airports ({city?.airports?.length})</h2>
         <List list={city?.airports} url={url} />
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
-import { FaPlusSquare, FaSave } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
+import { FaCirclePlus, FaFloppyDisk, FaPencil } from "react-icons/fa6";
 
 function Button({ icon = "", label, onClick, type = "submit" }) {
   const getIcon = function () {
@@ -8,9 +7,9 @@ function Button({ icon = "", label, onClick, type = "submit" }) {
       case "edit":
         return <FaPencil />;
       case "submit":
-        return <FaSave />;
+        return <FaFloppyDisk />;
       case "add":
-        return <FaPlusSquare />;
+        return <FaCirclePlus />;
       default:
         break;
     }

@@ -69,7 +69,7 @@ function FlightDetails({ flight }) {
       </div>
 
       <div className="details-table">
-        <h2>Passengers</h2>
+        <h2>Passengers ({flight?.passengerList?.length})</h2>
 
         <List list={flight?.passengerList} url={url} />
       </div>

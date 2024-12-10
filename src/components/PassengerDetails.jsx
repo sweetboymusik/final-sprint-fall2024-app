@@ -40,7 +40,7 @@ function PassengerDetails({ passenger }) {
       </div>
 
       <div className="details-table">
-        <h2>Flights</h2>
+        <h2>Flights ({passenger?.flights?.length})</h2>
 
         <List list={passenger?.flights} url={url} />
       </div>
