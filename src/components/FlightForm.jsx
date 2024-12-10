@@ -128,7 +128,7 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
           timeFormat="HH:mm"
           timeIntervals={15}
           dateFormat="yyyy-MM-dd HH:mm"
-          className="date-picker p-2 bg-primary-100 flex-1 border border-primary-200 rounded"
+          className="date-picker bg-primary-100 flex-1 border border-primary-200 rounded"
         />
       </div>
 

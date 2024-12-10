@@ -74,9 +74,9 @@ const ListItem = ({ item, heading, url }) => {
       <div className="w-32 flex-shrink-0 flex gap-2 justify-center">
         {!heading ? (
           <>
-            <button>
+            <Link to={url + "/" + item.id + "/edit"}>
               <FaPenToSquare />
-            </button>
+            </Link>
             <Link to={url + "/" + item.id}>
               <FaEye />
             </Link>

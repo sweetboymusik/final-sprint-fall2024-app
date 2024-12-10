@@ -1,7 +1,10 @@
 import React from "react";
 import PageDetailsItem from "./PageDetailsItem";
+import List from "./List";
 
 function CityDetails({ city }) {
+  const url = "/airports";
+
   return (
     <div className="details-outer">
       <div className="details-inner">
@@ -19,20 +22,9 @@ function CityDetails({ city }) {
         </div>
       </div>
 
-      <div className="details-inner">
+      <div className="details-table">
         <h2>Airports</h2>
-
-        <div className="details-nested">
-          {city?.airports?.map((airport) => {
-            return (
-              <div key={airport.id} className="flex flex-col">
-                <PageDetailsItem label={"ID"} value={airport.id} />
-                <PageDetailsItem label={"Name"} value={airport.name} />
-                <PageDetailsItem label={"Code"} value={airport.code} />
-              </div>
-            );
-          })}
-        </div>
+        <List list={city?.airports} url={url} />
       </div>
     </div>
   );

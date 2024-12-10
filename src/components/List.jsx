@@ -2,6 +2,7 @@ import ListItem from "./ListItem";
 import { getHeaders } from "../utils/listUtils";
 
 function List({ list = [], url }) {
+  console.log(list);
   const headers = getHeaders(list);
   return (
     <div className="border border-primary-200 rounded overflow-clip">
