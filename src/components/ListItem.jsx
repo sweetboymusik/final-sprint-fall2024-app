@@ -24,7 +24,7 @@ const renderValue = (value) => {
               )
             )}
             {index < value.length - 1 && (
-              <hr className="border-t border-gray-300 my-2" />
+              <hr className="border-t border-primary-2 my-2" />
             )}
           </div>
         ))}
@@ -55,7 +55,7 @@ const ListItem = ({ item, heading, url }) => {
 
   return (
     <div
-      className={`flex border-t p-2 items-center ${
+      className={`flex border-t border-primary-200 p-2 items-center ${
         heading
           ? "font-bold text-white text-lg bg-primary-800 border-none hover:bg-none"
           : "hover:bg-primary-100"

@@ -103,30 +103,32 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="entity-form">
-      <div>
-        <label>Departure</label>
+    <form onSubmit={handleSubmit} className="flex flex-col w-[700px] gap-2">
+      <div className="flex items-center">
+        <label className="flex-1">Departure</label>
         <DatePicker
           selected={departure}
           onChange={(date) => setDeparture(date)}
           showTimeSelect
+          showIcon
           timeFormat="HH:mm"
           timeIntervals={15}
           dateFormat="yyyy-MM-dd HH:mm"
-          className="form-control"
+          className="date-picker p-2 bg-primary-100 flex-1 border border-primary-200 rounded"
         />
       </div>
 
-      <div>
-        <label>Arrival</label>
+      <div className="flex items-center">
+        <label className="flex-1">Arrival</label>
         <DatePicker
           selected={arrival}
           onChange={(date) => setArrival(date)}
           showTimeSelect
+          showIcon
           timeFormat="HH:mm"
           timeIntervals={15}
           dateFormat="yyyy-MM-dd HH:mm"
-          className="form-control"
+          className="date-picker p-2 bg-primary-100 flex-1 border border-primary-200 rounded"
         />
       </div>
 

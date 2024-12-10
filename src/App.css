@@ -31,3 +31,17 @@ h3 {
 .details-nested {
   @apply flex flex-col gap-4;
 }
+
+.entity-form {
+  @apply flex flex-col gap-2;
+  width: 700px;
+}
+
+select {
+  width: 350px;
+}
+
+.date-picker {
+  min-width: 350px;
+  max-width: 350px;
+}
