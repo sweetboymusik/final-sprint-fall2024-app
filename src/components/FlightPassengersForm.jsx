@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormDropdown from "./FormDropdown";
 import Button from "./Button";
-import PassengersTable from "./PassengersTable";
 import { fetchAllPassengers } from "../api/passengers-api";
 import { addPassengerToFlight } from "../api/flights-api";
+import List from "./List";
 
 function FlightPassengersForm({ flight = {} }) {
   const navigate = useNavigate();
@@ -17,14 +17,21 @@ function FlightPassengersForm({ flight = {} }) {
     const loadPassengers = async () => {
       try {
         const response = await fetchAllPassengers();
-        setPassengers(response);
+        const existingPassengerIds =
+          flight?.passengerList?.map((p) => p.id) || [];
+
+        const filteredPassengers = response.filter(
+          (passenger) => !existingPassengerIds.includes(passenger.id)
+        );
+
+        setPassengers(filteredPassengers);
       } catch (error) {
         console.error("Error fetching passengers:", error);
       }
     };
 
     loadPassengers();
-  }, []);
+  }, [flight.passengerList]);
 
   const handleAddPassenger = () => {
     if (
@@ -58,7 +65,7 @@ function FlightPassengersForm({ flight = {} }) {
     <form onSubmit={handleSubmit}>
       <div className="flex items-center gap-4 mb-4">
         <FormDropdown
-          label="Add Passenger"
+          label="Passenger"
           list={passengers}
           value={selectedPassenger?.id || ""}
           onChange={(e) => {
@@ -71,20 +78,24 @@ function FlightPassengersForm({ flight = {} }) {
 
         <Button
           type="button"
+          icon="add"
           label="Add"
           onClick={handleAddPassenger}
           disabled={!selectedPassenger}
         />
       </div>
 
-      <h3 className="text-lg font-bold mb-4">Passengers to Add</h3>
+      <div className="details-table">
+        <h2>Passengers to Add</h2>
 
-      <PassengersTable
-        passengers={passengersToAdd}
-        onRemove={handleRemovePassenger}
-      />
+        {passengersToAdd.length === 0 ? (
+          ""
+        ) : (
+          <List list={passengersToAdd} onRemove={handleRemovePassenger} />
+        )}
 
-      <Button icon="submit" type="submit" label={"Submit"} />
+        <Button icon="submit" type="submit" label={"Submit"} />
+      </div>
     </form>
   );
 }

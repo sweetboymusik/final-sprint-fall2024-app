@@ -1,4 +1,4 @@
-import { FaEye, FaPenToSquare } from "react-icons/fa6";
+import { FaEye, FaPenToSquare, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const renderValue = (value) => {
@@ -48,7 +48,7 @@ const renderValue = (value) => {
   return <span>{String(value)}</span>;
 };
 
-const ListItem = ({ item, heading, url }) => {
+const ListItem = ({ item, heading, url, onRemove }) => {
   if (!item || typeof item !== "object") {
     return null;
   }
@@ -74,12 +74,24 @@ const ListItem = ({ item, heading, url }) => {
       <div className="w-32 flex-shrink-0 flex gap-2 justify-center">
         {!heading ? (
           <>
-            <Link to={url + "/" + item.id + "/edit"}>
-              <FaPenToSquare />
-            </Link>
-            <Link to={url + "/" + item.id}>
-              <FaEye />
-            </Link>
+            {onRemove ? (
+              <button
+                type="button"
+                onClick={() => onRemove(item?.id)}
+                className="text-red-500"
+              >
+                <FaTrash />
+              </button>
+            ) : (
+              <>
+                <Link to={url + "/" + item.id + "/edit"}>
+                  <FaPenToSquare />
+                </Link>
+                <Link to={url + "/" + item.id}>
+                  <FaEye />
+                </Link>
+              </>
+            )}
           </>
         ) : (
           "Actions"

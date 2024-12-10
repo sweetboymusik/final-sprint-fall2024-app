@@ -55,6 +55,19 @@ function FlightDetails({ flight }) {
         </div>
       </div>
 
+      <div className="details-inner">
+        <h2>Aircraft Details</h2>
+
+        <div>
+          <PageDetailsItem label={"ID"} value={flight.aircraft?.id} />
+          <PageDetailsItem label={"Type"} value={flight.aircraft?.type} />
+          <PageDetailsItem
+            label={"Airline"}
+            value={flight.aircraft?.airline?.name}
+          />
+        </div>
+      </div>
+
       <div className="details-table">
         <h2>Passengers</h2>
 

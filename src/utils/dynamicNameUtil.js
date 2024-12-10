@@ -7,7 +7,6 @@ import { fetchPassengerById } from "../api/passengers-api";
 
 export const fetchDynamicName = async (segment, routePrefix) => {
   let response;
-  console.log(segment);
 
   switch (routePrefix) {
     case "/cities/":
