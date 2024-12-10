@@ -3,7 +3,7 @@ import PageDetailsItem from "./PageDetailsItem";
 import List from "./List";
 
 function AirlineDetails({ airline }) {
-  const url = "/aircraft";
+  const url = "/airline";
 
   return (
     <div className="details-outer">

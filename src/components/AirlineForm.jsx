@@ -11,6 +11,8 @@ function AirlineForm({ entity: airline = {}, isNew: isNewAirline = false }) {
   const [country, setCountry] = useState("");
 
   useEffect(() => {
+    console.log("Airline object:", airline);
+
     if (airline && !isNewAirline) {
       setName(airline.name || "");
       setCountry(airline.country || "");
