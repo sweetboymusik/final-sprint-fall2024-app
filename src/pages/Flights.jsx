@@ -9,15 +9,27 @@ function Flights() {
   const { pathname: url } = useLocation();
   const navigate = useNavigate();
   const [flights, setFlights] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadFlights = useCallback(async () => {
-    const response = await fetchAllFlights();
-    setFlights(response);
+    setLoading(true);
+    try {
+      const response = await fetchAllFlights();
+      setFlights(response);
+    } catch (error) {
+      console.error("Error fetching flights:", error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
     loadFlights();
   }, [loadFlights]);
+
+  useEffect(() => {
+    document.title = "Flights";
+  }, []);
 
   const handleAddFlight = function () {
     navigate(`/flights/add`);
@@ -28,7 +40,7 @@ function Flights() {
       label={"Flights"}
       Button={<Button icon="add" label={"Add"} onClick={handleAddFlight} />}
     >
-      <List list={flights} url={url} />
+      {loading ? <p>Loading flights...</p> : <List list={flights} url={url} />}
     </Page>
   );
 }

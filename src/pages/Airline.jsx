@@ -19,6 +19,12 @@ function Airline() {
     loadAirline();
   }, [loadAirline, id]);
 
+  useEffect(() => {
+    airline && airline.name
+      ? (document.title = "Airline | " + airline.name)
+      : (document.title = "Airline");
+  }, [airline]);
+
   const handleButtonClick = function () {
     navigate(`/airlines/${id}/edit`);
   };

@@ -19,6 +19,12 @@ function Flight() {
     loadFlight();
   }, [loadFlight, id]);
 
+  useEffect(() => {
+    flight && flight.id
+      ? (document.title = "Flight | #" + flight.id)
+      : (document.title = "Flight");
+  }, [flight]);
+
   const handleButtonClick = function () {
     navigate(`/flights/${id}/edit`);
   };

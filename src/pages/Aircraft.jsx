@@ -20,6 +20,12 @@ function Aircraft() {
     loadAircraft();
   }, [loadAircraft, id]);
 
+  useEffect(() => {
+    aircraft && aircraft.type
+      ? (document.title = "Aircraft | " + aircraft.type)
+      : (document.title = "Aircraft");
+  }, [aircraft]);
+
   const handleButtonClick = function () {
     navigate(`/aircraft/${id}/edit`);
   };

@@ -9,15 +9,27 @@ function Airlines() {
   const { pathname: url } = useLocation();
   const navigate = useNavigate();
   const [airlines, setAirlines] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadAirlines = useCallback(async () => {
-    const response = await fetchAllAirlines();
-    setAirlines(response);
+    setLoading(true);
+    try {
+      const response = await fetchAllAirlines();
+      setAirlines(response);
+    } catch (error) {
+      console.error("Error fetching airlines:", error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
     loadAirlines();
   }, [loadAirlines]);
+
+  useEffect(() => {
+    document.title = "Airlines";
+  }, []);
 
   const handleAddAirline = function () {
     navigate(`/airlines/add`);
@@ -28,7 +40,11 @@ function Airlines() {
       label={"Airlines"}
       Button={<Button icon="add" label={"Add"} onClick={handleAddAirline} />}
     >
-      <List list={airlines} url={url} />
+      {loading ? (
+        <p>Loading airlines...</p>
+      ) : (
+        <List list={airlines} url={url} />
+      )}
     </Page>
   );
 }

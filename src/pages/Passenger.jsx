@@ -19,6 +19,17 @@ function Passenger() {
     loadPassenger();
   }, [loadPassenger, id]);
 
+  useEffect(() => {
+    document.title = "Passenger";
+  }, []);
+
+  useEffect(() => {
+    passenger && passenger.firstName
+      ? (document.title =
+          "Passenger | " + passenger.firstName + " " + passenger.lastName)
+      : (document.title = "Passenger");
+  }, [passenger]);
+
   const handleButtonClick = function () {
     navigate(`/passengers/${id}/edit`);
   };

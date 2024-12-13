@@ -19,6 +19,12 @@ function Edit({ FormComponent, fetchById, entityLabel }) {
     loadEntity();
   }, [loadEntity]);
 
+  useEffect(() => {
+    entity && entity.name
+      ? (document.title = "Edit | " + entity.name)
+      : (document.title = "Edit");
+  }, [entity]);
+
   if (!entity) {
     return <div>Loading...</div>;
   }

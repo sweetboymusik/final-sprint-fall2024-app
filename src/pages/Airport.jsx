@@ -19,6 +19,12 @@ function Airport() {
     loadAirport();
   }, [loadAirport, id]);
 
+  useEffect(() => {
+    airport && airport.name
+      ? (document.title = "Airport | " + airport.name)
+      : (document.title = "Airport");
+  }, [airport]);
+
   const handleButtonClick = function () {
     navigate(`/airports/${id}/edit`);
   };

@@ -17,8 +17,14 @@ function FlightPassengers() {
     loadFlight();
   }, [loadFlight, id]);
 
+  useEffect(() => {
+    flight && flight.id
+      ? (document.title = "Add Passengers | #" + flight.id)
+      : (document.title = "Add Passengers");
+  }, [flight]);
+
   return (
-    <Page label={`Add Passengers`}>
+    <Page label={`Add Passengers | #` + flight.id}>
       <FlightPassengersForm flight={flight} />
     </Page>
   );

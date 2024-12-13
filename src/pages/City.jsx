@@ -19,6 +19,12 @@ function City() {
     loadCity();
   }, [loadCity, id]);
 
+  useEffect(() => {
+    city && city.name
+      ? (document.title = "City | " + city.name)
+      : (document.title = "City");
+  }, [city]);
+
   const handleButtonClick = function () {
     navigate(`/cities/${id}/edit`);
   };
