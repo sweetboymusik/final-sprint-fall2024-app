@@ -47,3 +47,15 @@ export const updateAirport = async (airport, isNewAirport) => {
     throw error;
   }
 };
+
+export const fetchGatesByAirportId = async (airportId) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/airport/${airportId}/gates`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching gates for airport:", error);
+    throw error;
+  }
+};

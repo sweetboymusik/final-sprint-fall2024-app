@@ -4,6 +4,7 @@ import { fetchAirportById } from "../api/airports-api";
 import { fetchAirlineById } from "../api/airlines-api";
 import { fetchAircraftById } from "../api/aircraft-api";
 import { fetchPassengerById } from "../api/passengers-api";
+import { fetchFlightById } from "../api/flights-api";
 
 export const fetchDynamicName = async (segment, routePrefix) => {
   let response;
@@ -46,7 +47,7 @@ export const fetchDynamicName = async (segment, routePrefix) => {
       if (segment === "edit") return "Edit";
       if (segment === "add") return "Add";
       if (segment === "add_passengers") return "Add Passengers";
-      response = await fetchAircraftById(segment);
+      response = await fetchFlightById(segment);
       return "#" + response.id;
     default:
       break;

@@ -1,5 +1,6 @@
 import React from "react";
 import PageDetailsItem from "./PageDetailsItem";
+import List from "./List";
 
 function AirportDetails({ airport }) {
   return (
@@ -29,6 +30,11 @@ function AirportDetails({ airport }) {
             value={airport.city?.population}
           />
         </div>
+      </div>
+
+      <div className="details-table">
+        <h2>Gates ({airport?.gates?.length})</h2>
+        <List list={airport?.gates} />
       </div>
     </div>
   );

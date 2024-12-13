@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchAllAirports } from "../api/airports-api";
+import { fetchAllAirports, fetchGatesByAirportId } from "../api/airports-api";
 import { fetchAllAircraft } from "../api/aircraft-api";
 import { updateFlight } from "../api/flights-api";
 import FormDropdown from "./FormDropdown";
@@ -15,10 +15,14 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   const [arrival, setArrival] = useState(null);
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
+  const [originGate, setOriginGate] = useState("");
+  const [destinationGate, setDestinationGate] = useState("");
   const [aircraft, setAircraft] = useState("");
 
   const [airports, setAirports] = useState([]);
   const [aircrafts, setAircrafts] = useState([]);
+  const [originGates, setOriginGates] = useState([]);
+  const [destinationGates, setDestinationGates] = useState([]);
 
   const parseUTCToLocal = (utcString) => {
     if (!utcString) return null;
@@ -48,13 +52,14 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   };
 
   useEffect(() => {
-    console.log("Flight data:", flight); // Debug flight data
     if (flight && !isNewFlight) {
       setDeparture(flight.departure ? parseUTCToLocal(flight.departure) : null);
       setArrival(flight.arrival ? parseUTCToLocal(flight.arrival) : null);
       setOrigin(flight.origin?.id || "");
       setDestination(flight.destination?.id || "");
       setAircraft(flight.aircraft?.id || "");
+      setOriginGate(flight.originGate?.id || "");
+      setDestinationGate(flight.destinationGate?.id || "");
     }
   }, [flight, isNewFlight]);
 
@@ -68,10 +73,6 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
       }
     };
 
-    loadAirports();
-  }, []);
-
-  useEffect(() => {
     const loadAircrafts = async () => {
       try {
         const response = await fetchAllAircraft();
@@ -81,22 +82,50 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
       }
     };
 
+    loadAirports();
     loadAircrafts();
   }, []);
 
+  useEffect(() => {
+    const fetchOriginGates = async () => {
+      if (!origin) return;
+      try {
+        const gates = await fetchGatesByAirportId(origin);
+        setOriginGates(gates);
+      } catch (error) {
+        console.error("Error fetching origin gates:", error);
+      }
+    };
+
+    fetchOriginGates();
+  }, [origin]);
+
+  useEffect(() => {
+    const fetchDestinationGates = async () => {
+      if (!destination) return;
+      try {
+        const gates = await fetchGatesByAirportId(destination);
+        setDestinationGates(gates);
+      } catch (error) {
+        console.error("Error fetching destination gates:", error);
+      }
+    };
+
+    fetchDestinationGates();
+  }, [destination]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Aircraft: ", aircraft);
     try {
       const updatedFlight = {
         id: isNewFlight ? undefined : flight.id,
         departure: departure ? convertLocalToUTCISO(departure) : null,
         arrival: arrival ? convertLocalToUTCISO(arrival) : null,
-        originAirportId: origin,
-        destinationAirportId: destination,
+        originGateId: originGate,
+        destinationGateId: destinationGate,
         aircraftId: aircraft,
       };
-
-      console.log("Updated Flight Data:", updatedFlight); // Debug updated flight data
 
       const response = await updateFlight(updatedFlight, isNewFlight);
       const flightId = response?.id || flight.id;
@@ -136,17 +165,31 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
       </div>
 
       <FormDropdown
-        label="Origin"
+        label="Origin Airport"
         list={airports}
         value={origin}
         onChange={(e) => setOrigin(e.target.value)}
       />
 
       <FormDropdown
-        label="Destination"
+        label="Origin Gate"
+        list={originGates}
+        value={originGate}
+        onChange={(e) => setOriginGate(e.target.value)}
+      />
+
+      <FormDropdown
+        label="Destination Airport"
         list={airports}
         value={destination}
         onChange={(e) => setDestination(e.target.value)}
+      />
+
+      <FormDropdown
+        label="Destination Gate"
+        list={destinationGates}
+        value={destinationGate}
+        onChange={(e) => setDestinationGate(e.target.value)}
       />
 
       <FormDropdown
