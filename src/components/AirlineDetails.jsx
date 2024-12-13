@@ -19,7 +19,10 @@ function AirlineDetails({ airline }) {
 
       <div className="details-table">
         <h2>Aircraft ({airline?.aircraftList?.length})</h2>
-        <List list={airline?.aircraftList} url={url} />
+
+        {airline?.aircraftList?.length > 0 && (
+          <List list={airline?.aircraftList} url={url} />
+        )}
       </div>
     </div>
   );

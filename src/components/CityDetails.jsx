@@ -24,7 +24,8 @@ function CityDetails({ city }) {
 
       <div className="details-table">
         <h2>Airports ({city?.airports?.length})</h2>
-        <List list={city?.airports} url={url} />
+
+        {city?.airports?.length > 0 && <List list={city?.airports} url={url} />}
       </div>
     </div>
   );

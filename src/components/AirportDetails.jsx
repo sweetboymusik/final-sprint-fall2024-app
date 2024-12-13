@@ -34,7 +34,8 @@ function AirportDetails({ airport }) {
 
       <div className="details-table">
         <h2>Gates ({airport?.gates?.length})</h2>
-        <List list={airport?.gates} />
+
+        {airport?.gates?.length > 0 && <List list={airport?.gates} />}
       </div>
     </div>
   );

@@ -55,8 +55,8 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
     if (flight && !isNewFlight) {
       setDeparture(flight.departure ? parseUTCToLocal(flight.departure) : null);
       setArrival(flight.arrival ? parseUTCToLocal(flight.arrival) : null);
-      setOrigin(flight.origin?.id || "");
-      setDestination(flight.destination?.id || "");
+      setOrigin(flight.originGate?.airport?.id || "");
+      setDestination(flight.destinationGate?.airport?.id || "");
       setAircraft(flight.aircraft?.id || "");
       setOriginGate(flight.originGate?.id || "");
       setDestinationGate(flight.destinationGate?.id || "");
@@ -97,10 +97,6 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
       }
     };
 
-    fetchOriginGates();
-  }, [origin]);
-
-  useEffect(() => {
     const fetchDestinationGates = async () => {
       if (!destination) return;
       try {
@@ -111,12 +107,12 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
       }
     };
 
+    fetchOriginGates();
     fetchDestinationGates();
-  }, [destination]);
+  }, [origin, destination]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Aircraft: ", aircraft);
     try {
       const updatedFlight = {
         id: isNewFlight ? undefined : flight.id,
