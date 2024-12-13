@@ -19,13 +19,23 @@ function Airline() {
     loadAirline();
   }, [loadAirline, id]);
 
+  useEffect(() => {
+    airline && airline.name
+      ? (document.title = "Airline | " + airline.name)
+      : (document.title = "Airline");
+  }, [airline]);
+
   const handleButtonClick = function () {
     navigate(`/airlines/${id}/edit`);
   };
 
   return (
-    <Page label={"Airline | " + airline.name}>
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+    <Page
+      label={"Airline | " + airline.name}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+    >
       <AirlineDetails airline={airline} />
     </Page>
   );

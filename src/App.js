@@ -27,6 +27,7 @@ import { fetchPassengerById } from "./api/passengers-api";
 import FlightForm from "./components/FlightForm";
 import { fetchFlightById } from "./api/flights-api";
 import FlightPassengers from "./pages/FlightPassengers";
+import { fetchAirlineById } from "./api/airlines-api";
 
 function App() {
   return (
@@ -83,8 +84,8 @@ function App() {
           element={
             <Edit
               FormComponent={AirlineForm}
-              fetchById={fetchAirportById}
-              entityLabel={"Airport"}
+              fetchById={fetchAirlineById}
+              entityLabel={"Airline"}
             />
           }
         />

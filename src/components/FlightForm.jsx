@@ -13,14 +13,15 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
 
   const [departure, setDeparture] = useState(null);
   const [arrival, setArrival] = useState(null);
-  const [origin, setOrigin] = useState(1);
-  const [destination, setDestination] = useState(1);
-  const [aircraft, setAircraft] = useState(1);
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  const [aircraft, setAircraft] = useState("");
 
   const [airports, setAirports] = useState([]);
   const [aircrafts, setAircrafts] = useState([]);
 
   const parseUTCToLocal = (utcString) => {
+    if (!utcString) return null;
     const utcDate = new Date(utcString);
     return new Date(
       utcDate.getUTCFullYear(),
@@ -33,6 +34,7 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   };
 
   const convertLocalToUTCISO = (localDate) => {
+    if (!localDate) return null;
     return new Date(
       Date.UTC(
         localDate.getFullYear(),
@@ -46,12 +48,13 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   };
 
   useEffect(() => {
+    console.log("Flight data:", flight); // Debug flight data
     if (flight && !isNewFlight) {
       setDeparture(flight.departure ? parseUTCToLocal(flight.departure) : null);
       setArrival(flight.arrival ? parseUTCToLocal(flight.arrival) : null);
-      setOrigin(flight.origin?.id || 0);
-      setDestination(flight.destination?.id || 0);
-      setAircraft(flight.aircraft?.id || 0);
+      setOrigin(flight.origin?.id || "");
+      setDestination(flight.destination?.id || "");
+      setAircraft(flight.aircraft?.id || "");
     }
   }, [flight, isNewFlight]);
 
@@ -88,10 +91,12 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
         id: isNewFlight ? undefined : flight.id,
         departure: departure ? convertLocalToUTCISO(departure) : null,
         arrival: arrival ? convertLocalToUTCISO(arrival) : null,
-        originId: origin,
-        destinationId: destination,
+        originAirportId: origin,
+        destinationAirportId: destination,
         aircraftId: aircraft,
       };
+
+      console.log("Updated Flight Data:", updatedFlight); // Debug updated flight data
 
       const response = await updateFlight(updatedFlight, isNewFlight);
       const flightId = response?.id || flight.id;
@@ -103,9 +108,9 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="entity-form">
-      <div>
-        <label>Departure</label>
+    <form onSubmit={handleSubmit} className="flex flex-col w-[700px] gap-4">
+      <div className="flex items-center">
+        <label className="flex-1">Departure</label>
         <DatePicker
           selected={departure}
           onChange={(date) => setDeparture(date)}
@@ -113,12 +118,12 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
           timeFormat="HH:mm"
           timeIntervals={15}
           dateFormat="yyyy-MM-dd HH:mm"
-          className="form-control"
+          className="date-picker p-2 bg-primary-100 flex-1 border border-primary-200 rounded"
         />
       </div>
 
-      <div>
-        <label>Arrival</label>
+      <div className="flex items-center">
+        <label className="flex-1">Arrival</label>
         <DatePicker
           selected={arrival}
           onChange={(date) => setArrival(date)}
@@ -126,7 +131,7 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
           timeFormat="HH:mm"
           timeIntervals={15}
           dateFormat="yyyy-MM-dd HH:mm"
-          className="form-control"
+          className="date-picker bg-primary-100 flex-1 border border-primary-200 rounded"
         />
       </div>
 
@@ -134,21 +139,21 @@ function FlightForm({ entity: flight = {}, isNew: isNewFlight = false }) {
         label="Origin"
         list={airports}
         value={origin}
-        onChange={(e) => setOrigin(Number(e.target.value))}
+        onChange={(e) => setOrigin(e.target.value)}
       />
 
       <FormDropdown
         label="Destination"
         list={airports}
         value={destination}
-        onChange={(e) => setDestination(Number(e.target.value))}
+        onChange={(e) => setDestination(e.target.value)}
       />
 
       <FormDropdown
         label="Aircraft"
         list={aircrafts}
         value={aircraft}
-        onChange={(e) => setAircraft(Number(e.target.value))}
+        onChange={(e) => setAircraft(e.target.value)}
       />
 
       <Button icon="submit" type="submit" label={"Submit"} />

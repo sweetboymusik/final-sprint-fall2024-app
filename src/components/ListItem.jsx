@@ -1,4 +1,4 @@
-import { FaEye, FaPenToSquare } from "react-icons/fa6";
+import { FaEye, FaPenToSquare, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const renderValue = (value) => {
@@ -24,7 +24,7 @@ const renderValue = (value) => {
               )
             )}
             {index < value.length - 1 && (
-              <hr className="border-t border-gray-300 my-2" />
+              <hr className="border-t border-primary-2 my-2" />
             )}
           </div>
         ))}
@@ -48,17 +48,17 @@ const renderValue = (value) => {
   return <span>{String(value)}</span>;
 };
 
-const ListItem = ({ item, heading, url }) => {
+const ListItem = ({ item, heading, url, onRemove }) => {
   if (!item || typeof item !== "object") {
     return null;
   }
 
   return (
     <div
-      className={`flex border-t p-2 items-center ${
+      className={`flex border-t border-primary-200 p-2 items-center ${
         heading
-          ? "font-bold text-white text-lg bg-black border-none hover:bg-none"
-          : "hover:bg-gray-50"
+          ? "font-bold text-white text-lg bg-primary-800 border-none hover:bg-none"
+          : "hover:bg-primary-100"
       }`}
     >
       <div className="w-32 flex-shrink-0">{renderValue(item.id)}</div>
@@ -74,12 +74,24 @@ const ListItem = ({ item, heading, url }) => {
       <div className="w-32 flex-shrink-0 flex gap-2 justify-center">
         {!heading ? (
           <>
-            <button>
-              <FaPenToSquare />
-            </button>
-            <Link to={url + "/" + item.id}>
-              <FaEye />
-            </Link>
+            {onRemove ? (
+              <button
+                type="button"
+                onClick={() => onRemove(item?.id)}
+                className="text-red-500"
+              >
+                <FaTrash />
+              </button>
+            ) : (
+              <>
+                <Link to={url + "/" + item.id + "/edit"}>
+                  <FaPenToSquare />
+                </Link>
+                <Link to={url + "/" + item.id}>
+                  <FaEye />
+                </Link>
+              </>
+            )}
           </>
         ) : (
           "Actions"

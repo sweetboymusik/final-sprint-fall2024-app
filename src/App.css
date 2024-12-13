@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply text-primary-950;
+}
+
 h1 {
   @apply text-3xl font-bold;
 }
@@ -22,8 +26,28 @@ h3 {
 
 .details-inner {
   @apply flex flex-col gap-2;
+  width: 700px;
+}
+
+.details-table {
+  @apply flex flex-col gap-2;
 }
 
 .details-nested {
   @apply flex flex-col gap-4;
+}
+
+.entity-form {
+  @apply flex flex-col gap-2;
+  width: 700px;
+}
+
+select {
+  width: 350px;
+}
+
+.date-picker {
+  min-width: 350px;
+  max-width: 350px;
+  @apply p-2;
 }

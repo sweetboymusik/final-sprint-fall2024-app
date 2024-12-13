@@ -9,24 +9,42 @@ function Aircrafts() {
   const { pathname: url } = useLocation();
   const navigate = useNavigate();
   const [aircraft, setAircraft] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadAircraft = useCallback(async () => {
-    const response = await fetchAllAircraft();
-    setAircraft(response);
+    setLoading(true);
+    try {
+      const response = await fetchAllAircraft();
+      setAircraft(response);
+    } catch (error) {
+      console.error("Error fetching aircraft:", error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
     loadAircraft();
   }, [loadAircraft]);
 
+  useEffect(() => {
+    document.title = "Aircraft";
+  }, []);
+
   const handleAddAircraft = function () {
     navigate(`/aircraft/add`);
   };
 
   return (
-    <Page label={"Aircraft"}>
-      <Button icon="add" label={"Add"} onClick={handleAddAircraft} />
-      <List list={aircraft} url={url} />
+    <Page
+      label={"Aircraft"}
+      Button={<Button icon="add" label={"Add"} onClick={handleAddAircraft} />}
+    >
+      {loading ? (
+        <p>Loading aircraft...</p>
+      ) : (
+        <List list={aircraft} url={url} />
+      )}
     </Page>
   );
 }

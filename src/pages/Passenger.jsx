@@ -19,6 +19,17 @@ function Passenger() {
     loadPassenger();
   }, [loadPassenger, id]);
 
+  useEffect(() => {
+    document.title = "Passenger";
+  }, []);
+
+  useEffect(() => {
+    passenger && passenger.firstName
+      ? (document.title =
+          "Passenger | " + passenger.firstName + " " + passenger.lastName)
+      : (document.title = "Passenger");
+  }, [passenger]);
+
   const handleButtonClick = function () {
     navigate(`/passengers/${id}/edit`);
   };
@@ -26,8 +37,10 @@ function Passenger() {
   return (
     <Page
       label={"Passenger | " + passenger.firstName + " " + passenger.lastName}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
     >
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
       <PassengerDetails passenger={passenger} />
     </Page>
   );

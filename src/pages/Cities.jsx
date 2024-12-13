@@ -9,24 +9,38 @@ function Cities() {
   const { pathname: url } = useLocation();
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadCities = useCallback(async () => {
-    const response = await fetchAllCities();
-    setCities(response);
+    setLoading(true);
+    try {
+      const response = await fetchAllCities();
+      setCities(response);
+    } catch (error) {
+      console.error("Error fetching cities:", error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
     loadCities();
   }, [loadCities]);
 
+  useEffect(() => {
+    document.title = "Cities";
+  }, []);
+
   const handleAddCity = function () {
     navigate(`/cities/add`);
   };
 
   return (
-    <Page label={"Cities"}>
-      <Button icon="add" label={"Add"} onClick={handleAddCity} />
-      <List list={cities} url={url} />
+    <Page
+      label={"Cities"}
+      Button={<Button icon="add" label={"Add"} onClick={handleAddCity} />}
+    >
+      {loading ? <p>Loading cities...</p> : <List list={cities} url={url} />}
     </Page>
   );
 }

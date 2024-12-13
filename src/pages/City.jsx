@@ -19,13 +19,23 @@ function City() {
     loadCity();
   }, [loadCity, id]);
 
+  useEffect(() => {
+    city && city.name
+      ? (document.title = "City | " + city.name)
+      : (document.title = "City");
+  }, [city]);
+
   const handleButtonClick = function () {
     navigate(`/cities/${id}/edit`);
   };
 
   return (
-    <Page label={"City | " + city.name}>
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+    <Page
+      label={"City | " + city.name}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+    >
       <CityDetails city={city} />
     </Page>
   );

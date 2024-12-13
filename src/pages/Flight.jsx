@@ -19,6 +19,12 @@ function Flight() {
     loadFlight();
   }, [loadFlight, id]);
 
+  useEffect(() => {
+    flight && flight.id
+      ? (document.title = "Flight | #" + flight.id)
+      : (document.title = "Flight");
+  }, [flight]);
+
   const handleButtonClick = function () {
     navigate(`/flights/${id}/edit`);
   };
@@ -28,13 +34,19 @@ function Flight() {
   };
 
   return (
-    <Page label={"Flight | #" + flight.id}>
-      <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
-      <Button
-        icon={"add"}
-        label={"Add Passengers"}
-        onClick={handleAddPassengersToFlight}
-      />
+    <Page
+      label={"Flight | #" + flight.id}
+      Button={
+        <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+      SecondaryButton={
+        <Button
+          icon={"add"}
+          label={"Add Passengers"}
+          onClick={handleAddPassengersToFlight}
+        />
+      }
+    >
       <FlightDetails flight={flight} />
     </Page>
   );
