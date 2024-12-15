@@ -25,14 +25,29 @@ function FlightDetails({ flight }) {
         <h2>Origin Airport</h2>
 
         <div>
-          <PageDetailsItem label={"ID"} value={flight.origin?.id} />
-          <PageDetailsItem label={"Name"} value={flight.origin?.name} />
-          <PageDetailsItem label={"Code"} value={flight.origin?.code} />
+          <PageDetailsItem
+            label={"ID"}
+            value={flight.originGate?.airport?.id}
+          />
+          <PageDetailsItem
+            label={"Name"}
+            value={flight.originGate?.airport?.name}
+          />
+          <PageDetailsItem
+            label={"Code"}
+            value={flight.originGate?.airport?.code}
+          />
           <PageDetailsItem
             label={"City"}
             value={
-              flight.origin?.city?.name + ", " + flight.origin?.city?.state
+              flight.originGate?.airport?.city?.name +
+              ", " +
+              flight.originGate?.airport?.city?.state
             }
+          />
+          <PageDetailsItem
+            label={"Gate"}
+            value={flight.originGate?.gateNumber}
           />
         </div>
       </div>
@@ -41,16 +56,29 @@ function FlightDetails({ flight }) {
         <h2>Destination Airport</h2>
 
         <div>
-          <PageDetailsItem label={"ID"} value={flight.destination?.id} />
-          <PageDetailsItem label={"Name"} value={flight.destination?.name} />
-          <PageDetailsItem label={"Code"} value={flight.destination?.code} />
+          <PageDetailsItem
+            label={"ID"}
+            value={flight.destinationGate?.airport?.id}
+          />
+          <PageDetailsItem
+            label={"Name"}
+            value={flight.destinationGate?.airport?.name}
+          />
+          <PageDetailsItem
+            label={"Code"}
+            value={flight.destinationGate?.airport?.code}
+          />
           <PageDetailsItem
             label={"City"}
             value={
-              flight.destination?.city?.name +
+              flight.destinationGate?.airport?.city?.name +
               ", " +
-              flight.destination?.city?.state
+              flight.destinationGate?.airport?.city?.state
             }
+          />
+          <PageDetailsItem
+            label={"Gate"}
+            value={flight.destinationGate?.gateNumber}
           />
         </div>
       </div>
@@ -71,7 +99,9 @@ function FlightDetails({ flight }) {
       <div className="details-table">
         <h2>Passengers ({flight?.passengerList?.length})</h2>
 
-        <List list={flight?.passengerList} url={url} />
+        {flight?.passengerList?.length > 0 && (
+          <List list={flight?.passengerList} url={url} />
+        )}
       </div>
     </div>
   );

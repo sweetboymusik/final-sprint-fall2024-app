@@ -11,6 +11,9 @@ function FormDropdown({ label, list, value, onChange }) {
         return `${item?.type} (${item?.airline?.name || "Unknown Airline"})`;
       case "City":
         return `${item?.name} (${item?.state})`;
+      case "Origin Gate":
+      case "Destination Gate":
+        return `${item?.gateNumber}`;
       default:
         return item?.name || "Unknown";
     }
