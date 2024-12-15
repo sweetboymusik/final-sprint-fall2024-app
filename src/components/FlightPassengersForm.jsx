@@ -62,30 +62,34 @@ function FlightPassengersForm({ flight = {} }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="entity-form">
-      {passengers?.length > 0 ? (
-        <FormDropdown
-          label="Passenger"
-          list={passengers}
-          value={selectedPassenger?.id || ""}
-          onChange={(e) => {
-            const passenger = passengers.find(
-              (p) => p.id === Number(e.target.value)
-            );
-            setSelectedPassenger(passenger);
-          }}
-        />
-      ) : (
-        <span>Loading...</span>
-      )}
+    <div className="flex flex-col gap-8">
+      <form onSubmit={handleSubmit} className="entity-form">
+        {passengers?.length > 0 ? (
+          <FormDropdown
+            label="Passenger"
+            list={passengers}
+            value={selectedPassenger?.id || ""}
+            onChange={(e) => {
+              const passenger = passengers.find(
+                (p) => p.id === Number(e.target.value)
+              );
+              setSelectedPassenger(passenger);
+            }}
+          />
+        ) : (
+          <span>Loading...</span>
+        )}
 
-      <Button
-        type="button"
-        icon="add"
-        label="Add"
-        onClick={handleAddPassenger}
-        disabled={!selectedPassenger}
-      />
+        <Button
+          type="button"
+          icon="add"
+          label="Add"
+          onClick={handleAddPassenger}
+          disabled={!selectedPassenger}
+        />
+
+        <Button icon="submit" type="submit" label={"Submit"} />
+      </form>
 
       <div className="details-table">
         <h2>Passengers to Add</h2>
@@ -95,10 +99,8 @@ function FlightPassengersForm({ flight = {} }) {
         ) : (
           <List list={passengersToAdd} onRemove={handleRemovePassenger} />
         )}
-
-        <Button icon="submit" type="submit" label={"Submit"} />
       </div>
-    </form>
+    </div>
   );
 }
 
