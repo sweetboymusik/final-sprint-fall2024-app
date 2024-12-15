@@ -29,11 +29,22 @@ function Airport() {
     navigate(`/airports/${id}/edit`);
   };
 
+  const handleAddGateToAirport = function () {
+    navigate(`/airports/${id}/add_gate`);
+  };
+
   return (
     <Page
       label={"Airport | " + airport.name}
       Button={
         <Button icon={"edit"} label={"Edit"} onClick={handleButtonClick} />
+      }
+      SecondaryButton={
+        <Button
+          icon={"add"}
+          label={"Add Gates"}
+          onClick={handleAddGateToAirport}
+        />
       }
     >
       <AirportDetails airport={airport} />

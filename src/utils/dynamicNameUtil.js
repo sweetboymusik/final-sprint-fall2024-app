@@ -20,8 +20,14 @@ export const fetchDynamicName = async (segment, routePrefix) => {
       if (segment === "airports") return "Airports";
       if (segment === "edit") return "Edit";
       if (segment === "add") return "Add";
-      response = await fetchAirportById(segment);
-      return response.name;
+      if (segment === "add_gates") return "Add Gates";
+
+      if (segment && !isNaN(segment)) {
+        response = await fetchAirportById(segment);
+        return response.name;
+      }
+
+      return "";
     case "/airlines/":
       if (segment === "airlines") return "Airlines";
       if (segment === "edit") return "Edit";
@@ -47,8 +53,13 @@ export const fetchDynamicName = async (segment, routePrefix) => {
       if (segment === "edit") return "Edit";
       if (segment === "add") return "Add";
       if (segment === "add_passengers") return "Add Passengers";
-      response = await fetchFlightById(segment);
-      return "#" + response.id;
+
+      if (segment && !isNaN(segment)) {
+        response = await fetchFlightById(segment);
+        return "#" + response.id;
+      }
+
+      return "";
     default:
       break;
   }

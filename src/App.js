@@ -28,6 +28,7 @@ import FlightForm from "./components/FlightForm";
 import { fetchFlightById } from "./api/flights-api";
 import FlightPassengers from "./pages/FlightPassengers";
 import { fetchAirlineById } from "./api/airlines-api";
+import AirportGates from "./pages/AirportGates";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
           element={<Add FormComponent={AirportForm} label={"Add Airport"} />}
         />
         <Route path="/airports/:id" element={<Airport />} />
+        <Route path="/airports/:id/add_gate" element={<AirportGates />} />
         <Route
           path="/airports/:id/edit"
           element={
