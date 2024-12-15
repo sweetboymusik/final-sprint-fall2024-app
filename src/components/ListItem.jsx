@@ -20,7 +20,9 @@ const renderValue = (value) => {
           <div key={index} className="flex flex-col">
             {renderValue(
               Object.fromEntries(
-                Object.entries(item).filter(([key]) => key !== "id")
+                Object.entries(item).filter(
+                  ([key]) => key !== "id" && key !== "numberOfPassengers"
+                )
               )
             )}
             {index < value.length - 1 && (
@@ -33,7 +35,9 @@ const renderValue = (value) => {
   }
 
   if (typeof value === "object" && value !== null) {
-    const keys = Object.keys(value).filter((key) => key !== "id");
+    const keys = Object.keys(value).filter(
+      (key) => key !== "id" && key !== "numberOfPassengers"
+    );
     return (
       <div className="flex flex-col gap-2">
         {keys.map((key) => (
@@ -48,7 +52,7 @@ const renderValue = (value) => {
   return <span>{String(value)}</span>;
 };
 
-const ListItem = ({ item, heading, url, onRemove }) => {
+const ListItem = ({ item, heading, url, onRemove, action = true }) => {
   if (!item || typeof item !== "object") {
     return null;
   }
@@ -64,39 +68,41 @@ const ListItem = ({ item, heading, url, onRemove }) => {
       <div className="w-32 flex-shrink-0">{renderValue(item.id)}</div>
 
       {Object.keys(item)
-        .filter((key) => key !== "id")
+        .filter((key) => key !== "id" && key !== "numberOfPassengers")
         .map((key) => (
           <div key={key} className="flex-1 flex flex-col gap-10">
             {renderValue(item[key])}
           </div>
         ))}
 
-      <div className="w-32 flex-shrink-0 flex gap-2 justify-center">
-        {!heading ? (
-          <>
-            {onRemove ? (
-              <button
-                type="button"
-                onClick={() => onRemove(item?.id)}
-                className="text-red-500"
-              >
-                <FaTrash />
-              </button>
-            ) : (
-              <>
-                <Link to={url + "/" + item.id + "/edit"}>
-                  <FaPenToSquare />
-                </Link>
-                <Link to={url + "/" + item.id}>
-                  <FaEye />
-                </Link>
-              </>
-            )}
-          </>
-        ) : (
-          "Actions"
-        )}
-      </div>
+      {action && (
+        <div className="w-32 flex-shrink-0 flex gap-2 justify-center">
+          {!heading ? (
+            <>
+              {onRemove ? (
+                <button
+                  type="button"
+                  onClick={() => onRemove(item?.id)}
+                  className="text-red-500"
+                >
+                  <FaTrash />
+                </button>
+              ) : (
+                <>
+                  <Link to={url + "/" + item.id + "/edit"}>
+                    <FaPenToSquare />
+                  </Link>
+                  <Link to={url + "/" + item.id}>
+                    <FaEye />
+                  </Link>
+                </>
+              )}
+            </>
+          ) : (
+            "Actions"
+          )}
+        </div>
+      )}
     </div>
   );
 };
