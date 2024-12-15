@@ -13,7 +13,7 @@ function AirportGatesForm({ airport = {} }) {
     e.preventDefault();
     try {
       const newGate = {
-        name: gateName,
+        gateNumber: gateName,
       };
 
       await addGateToAirport(airport.id, newGate);
@@ -25,15 +25,13 @@ function AirportGatesForm({ airport = {} }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex items-center gap-4 mb-4">
-        <FormItem
-          label="Gate Name"
-          type="text"
-          value={gateName}
-          onChange={(e) => setGateName(e.target.value)}
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="entity-form">
+      <FormItem
+        label="Gate Number/Name"
+        type="text"
+        value={gateName}
+        onChange={(e) => setGateName(e.target.value)}
+      />
 
       <Button icon="submit" type="submit" label={"Submit"} />
     </form>

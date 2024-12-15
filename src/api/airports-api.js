@@ -59,3 +59,17 @@ export const fetchGatesByAirportId = async (airportId) => {
     throw error;
   }
 };
+
+export const addGateToAirport = async (airportId, newGate) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:8080/airport/${airportId}/gates`, // Correct URL with airportId
+      newGate // Send the new gate data as the request body
+    );
+
+    return response.data; // Return the response from the API
+  } catch (error) {
+    console.error("Error adding gate to airport:", error);
+    throw error; // Throw the error for higher-level handling
+  }
+};

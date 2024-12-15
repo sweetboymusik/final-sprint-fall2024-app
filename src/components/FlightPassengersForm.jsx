@@ -62,8 +62,8 @@ function FlightPassengersForm({ flight = {} }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex items-center gap-4 mb-4">
+    <form onSubmit={handleSubmit} className="entity-form">
+      {passengers?.length > 0 ? (
         <FormDropdown
           label="Passenger"
           list={passengers}
@@ -75,15 +75,17 @@ function FlightPassengersForm({ flight = {} }) {
             setSelectedPassenger(passenger);
           }}
         />
+      ) : (
+        <span>Loading...</span>
+      )}
 
-        <Button
-          type="button"
-          icon="add"
-          label="Add"
-          onClick={handleAddPassenger}
-          disabled={!selectedPassenger}
-        />
-      </div>
+      <Button
+        type="button"
+        icon="add"
+        label="Add"
+        onClick={handleAddPassenger}
+        disabled={!selectedPassenger}
+      />
 
       <div className="details-table">
         <h2>Passengers to Add</h2>

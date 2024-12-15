@@ -16,7 +16,7 @@ function FlightDetails({ flight }) {
           <PageDetailsItem label={"Departure"} value={flight.departure} />
           <PageDetailsItem
             label={"Number of Passengers"}
-            value={flight.numberOfPassengers}
+            value={flight.passengerList?.length}
           />
         </div>
       </div>
